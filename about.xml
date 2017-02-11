@@ -14,7 +14,7 @@
     <p style="font-style: italic">The most important thing, however, is that no Javascript is used whatsoever (apart, of
     course, from the Javascript that was used to implement Saxon-JS!).</p>
     <p>Saxon-JS requires a modern browser. </p>
-    <p>If you would like to have an easy look at the code, here's a <a href="mastermind.zip">zip</a>. Note that you have to
+    <p>If you would like to have an easy look at the code, check <a href="https://github.com/pmasereeuw/mastermind">https://github.com/pmasereeuw/mastermind</a>. Note that you have to
        set up Saxon-JS yourself.</p>
     <p class="links">
         <a href="#" class="switch-to-play">the game board</a>
