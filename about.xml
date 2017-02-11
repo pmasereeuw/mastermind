@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<div id="about" class="hideable">
+    <!-- Copyright (c) Pieter Masereeuw 2013 - http://www.masereeuw.nl -->
+    
+    <h2>About this little application</h2>
+    <p>This application was written as an experiment with NoJS client side programming using <a href="http://www.saxonica.com">Michael
+        Kay's/Saxonica's</a> exciting product <a href="http://www.saxonica.com/saxon-js/index.xml">Saxon-JS</a>.</p>
+    <p>The program attempts to solve a mastermind challenge by guessing four colours in the mind of
+        the user.</p>
+    <p>The algorithm is not meant to be very clever - it is basically a matter of brute force
+        backtracking in an attempt to find a new move that does not contradict earlier moves. In some situations,
+        the calculation may cause a considerable delay, especially on slow systems.
+    </p>
+    <p style="font-style: italic">The most important thing, however, is that no Javascript is used whatsoever (apart, of
+    course, from the Javascript that was used to implement Saxon-JS!).</p>
+    <p>Saxon-JS requires a modern browser. </p>
+    <p>If you would like to have an easy look at the code, here's a <a href="mastermind.zip">zip</a>. Note that you have to
+       set up Saxon-JS yourself.</p>
+    <p class="links">
+        <a href="#" class="switch-to-play">the game board</a>
+        <a href="#" class="switch-to-howtoplay">the rules of this game</a>
+    </p>
+</div>

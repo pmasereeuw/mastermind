@@ -1,0 +1,48 @@
+/* Copyright (c) Pieter Masereeuw 2013 - http://www.masereeuw.nl */
+
+body {
+    font-family: arial, helvetica, sans-serif;
+    font-size: medium;
+    color: #552200;
+    width: 30em;
+}
+
+table.democolors {
+    background-color: #552200;
+}
+
+img.democolor {
+    height: 35px;
+    width: 35px;
+}
+
+p.links:before {
+    content: "Show me: ";
+}
+
+p.links > a {
+    padding-left: 4em;
+}
+
+div.pane {
+    border-style: solid;
+    border-width: 1px;
+    background-color: #552200;
+    color: white;
+    min-height: 50ex;
+    width:30em;
+}
+
+th {
+    text-align:left;
+    font-size:small;
+    font-weight:bold;
+}
+
+select.score {
+    width:4em;
+}
+
+input#next-move {
+    color:#552200;
+}

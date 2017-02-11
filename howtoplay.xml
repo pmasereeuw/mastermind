@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<div id="howtoplay" class="hideable">
+    <!-- Copyright (c) Pieter Masereeuw 2013 - http://www.masereeuw.nl -->
+    <h2>How to play</h2>
+    <ul>
+        <li>Imagine a row of four colours. The possible colours are red, yellow, green, blue, black
+            and white.</li>
+        <li>When the computer guesses a row, enter a value for the number of matching columns and
+            the number of matching colours. Counting works as follows: <ol>
+                <li>Count the columns where the colours are equal. Enter that value in the left drop down
+                    box.</li>
+                <li>For each of the remaining colours (in non-matching columns), check if a
+                    corresponding colour exists that has not yet been counted (note that colours may
+                    occur several times, so make sure to count each occurrence only once). The
+                    number of these colours should be entered in the right drop down box. </li>
+            </ol></li>
+        <li>Needless to say, when you are done, press the <i>Next move</i> button.</li>
+    </ul>
+    <p>In the SVG view, black pins represent matching columns, while white pins represent
+        matching colours on a wrong position.</p>
+    <p class="links">
+        <a href="#" class="switch-to-play">the game board</a>
+        <a href="#" class="switch-to-about">more information</a>
+    </p>
+</div>

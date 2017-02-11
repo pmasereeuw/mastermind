@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+    <!-- Copyright (c) Pieter Masereeuw 2016 - http://www.masereeuw.nl -->
+    
+    <head>
+        <title>Mastermind in Saxon-JS</title>
+        
+        <script type="text/javascript" language="javascript" src="SaxonJS.min.js"></script>
+        <script>
+            window.onload = function() {
+              SaxonJS.transform({
+                 stylesheetLocation: "mastermind-webinterface.sef",
+                 initialTemplate: "initial-template"
+                 });
+            } 
+         </script>
+         <link href="mastermind.css" rel="stylesheet" type="text/css"/>
+    </head>
+    <body>
+        <div id="top">
+            <h1>Mastermind in Saxon-JS</h1>
+            <table class="democolors">
+                <tbody>
+                    <tr>
+                        <td><img src="color1.png" class="democolor"/></td>
+                        <td><img src="color2.png" class="democolor"/></td>
+                        <td><img src="color3.png" class="democolor"/></td>
+                        <td><img src="color4.png" class="democolor"/></td>
+                        <td><img src="color5.png" class="democolor"/></td>
+                        <td><img src="color6.png" class="democolor"/></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        
+        <div id="about" class="hideable">
+            <p>Please wait for Saxon-JS to load...</p>
+        </div>
+
+        <div id="howtoplay"  class="hideable" style="display: none">
+            <p>Please wait for Saxon-JS to load...</p>
+        </div>
+        
+        <div id="play"  class="hideable" style="display: none">
+            <p>Render board as SVG Image <input type="checkbox" name="renderAsSVG" id="renderAsSVG" checked="checked"/></p>
+            
+            <div id="mastermind" class="pane"><p>Please wait for Saxon-JS to load...</p></div>
+            
+            <p class="links"><a href="#" class="switch-to-howtoplay">the rules of this game</a> <a href="#" class="switch-to-about">more information</a></p>
+       </div>
+    </body>
+</html>

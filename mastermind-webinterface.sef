@@ -1,0 +1,2659 @@
+<?xml version="1.0" encoding="utf-8"?>
+<package xmlns="http://ns.saxonica.com/xslt/export" xmlns:fn="http://www.w3.org/2005/xpath-functions" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:vv="http://saxon.sf.net/generated-variable" xmlns:java-type="http://saxon.sf.net/java-type" version="20" packageVersion="1" saxonVersion="9.7.0.14" timeStamp="2017-01-20T21:37:13.994+01:00" target="JS">
+ <co id="0" binds="1 1">
+  <template name="Q{}collectSVGMoves" flags="os" line="30" module="file:/home/pieter/saxonjs-experimenten/mastermind/mastermind-webinterface-svg.xslt" slots="2">
+   <sequence role="body" vn="20" baseUri="file:/home/pieter/saxonjs-experimenten/mastermind/mastermind-webinterface-svg.xslt" ns="xsl=http://www.w3.org/1999/XSL/Transform xs=http://www.w3.org/2001/XMLSchema pcm=http://www.masereeuw.nl/xslt/2.0/functions svg=http://www.w3.org/2000/svg" line="31">
+    <param name="mastermindDiv" slot="0" flags="r" as="element()">
+     <treat role="conversion" as="element()" jsTest="return SaxonJS.U.isNode(item) &amp;&amp; item.nodeType==1;" diag="8|0|XTTE0590|mastermindDiv">
+      <check card="1" diag="8|0|XTTE0590|mastermindDiv">
+       <supplied slot="0"/>
+      </check>
+     </treat>
+    </param>
+    <elem line="33" name="moves" namespaces="xs=http://www.w3.org/2001/XMLSchema svg=http://www.w3.org/2000/svg pcm=http://www.masereeuw.nl/xslt/2.0/functions">
+     <forEach>
+      <filter flags="b">
+       <slash>
+        <slash simple="1">
+         <varRef name="mastermindDiv" slot="0"/>
+         <axis name="child" nodeTest="element(Q{http://www.w3.org/2000/svg}svg)" jsTest="var q=SaxonJS.U.nameOfNode(item); return item.nodeType==1 &amp;&amp; q.uri=='http://www.w3.org/2000/svg'&amp;&amp;q.local=='svg';"/>
+        </slash>
+        <axis name="descendant" nodeTest="element(Q{http://www.w3.org/2000/svg}g)" jsTest="var q=SaxonJS.U.nameOfNode(item); return item.nodeType==1 &amp;&amp; q.uri=='http://www.w3.org/2000/svg'&amp;&amp;q.local=='g';"/>
+       </slash>
+       <gc op="=" card="1:1" comp="CCC">
+        <data>
+         <axis name="attribute" nodeTest="attribute(Q{}class)" jsTest="return item.name=='class'"/>
+        </data>
+        <str val="move"/>
+       </gc>
+      </filter>
+      <let line="41" var="identicalColorCount" as="xs:integer" slot="1" eval="7">
+       <choose>
+        <vc op="eq" onEmpty="0" comp="CCC">
+         <data>
+          <axis name="attribute" nodeTest="attribute(Q{}id)" jsTest="return item.name=='id'"/>
+         </data>
+         <str val="proposal"/>
+        </vc>
+        <ufCall name="Q{http://www.masereeuw.nl/xslt/2.0/functions}intFromWidget" tailCall="false" bSlot="0" eval="4">
+         <check card="1" diag="0|0||pcm:intFromWidget">
+          <filter flags="">
+           <slash simple="1">
+            <varRef name="mastermindDiv" slot="0"/>
+            <axis name="descendant" nodeTest="*:select" jsTest="var q=SaxonJS.U.nameOfNode(item); return SaxonJS.U.isNode(item) &amp;&amp; item.nodeType==1&amp;&amp;q.local == 'select'"/>
+           </slash>
+           <vc op="eq" comp="CCC">
+            <data>
+             <axis name="attribute" nodeTest="attribute(Q{}name)" jsTest="return item.name=='name'"/>
+            </data>
+            <str val="identicalColorCount"/>
+           </vc>
+          </filter>
+         </check>
+        </ufCall>
+        <true/>
+        <fn name="count">
+         <filter flags="">
+          <axis name="child" nodeTest="element(Q{http://www.w3.org/2000/svg}circle)" jsTest="var q=SaxonJS.U.nameOfNode(item); return item.nodeType==1 &amp;&amp; q.uri=='http://www.w3.org/2000/svg'&amp;&amp;q.local=='circle';"/>
+          <vc op="eq" comp="CCC">
+           <data>
+            <axis name="attribute" nodeTest="attribute(Q{}class)" jsTest="return item.name=='class'"/>
+           </data>
+           <str val="pincolor-2"/>
+          </vc>
+         </filter>
+        </fn>
+       </choose>
+       <elem line="44" name="move" namespaces="xs=http://www.w3.org/2001/XMLSchema svg=http://www.w3.org/2000/svg pcm=http://www.masereeuw.nl/xslt/2.0/functions">
+        <sequence>
+         <att name="identicalColumnCount">
+          <convert from="xs:integer" to="xs:string">
+           <choose line="37">
+            <vc op="eq" onEmpty="0" comp="CCC">
+             <data>
+              <axis name="attribute" nodeTest="attribute(Q{}id)" jsTest="return item.name=='id'"/>
+             </data>
+             <str val="proposal"/>
+            </vc>
+            <ufCall name="Q{http://www.masereeuw.nl/xslt/2.0/functions}intFromWidget" tailCall="false" bSlot="1" eval="4">
+             <check card="1" diag="0|0||pcm:intFromWidget">
+              <filter flags="">
+               <slash simple="1">
+                <varRef name="mastermindDiv" slot="0"/>
+                <axis name="descendant" nodeTest="*:select" jsTest="var q=SaxonJS.U.nameOfNode(item); return SaxonJS.U.isNode(item) &amp;&amp; item.nodeType==1&amp;&amp;q.local == 'select'"/>
+               </slash>
+               <vc op="eq" comp="CCC">
+                <data>
+                 <axis name="attribute" nodeTest="attribute(Q{}name)" jsTest="return item.name=='name'"/>
+                </data>
+                <str val="identicalColumnCount"/>
+               </vc>
+              </filter>
+             </check>
+            </ufCall>
+            <true/>
+            <fn name="count">
+             <filter flags="">
+              <axis name="child" nodeTest="element(Q{http://www.w3.org/2000/svg}circle)" jsTest="var q=SaxonJS.U.nameOfNode(item); return item.nodeType==1 &amp;&amp; q.uri=='http://www.w3.org/2000/svg'&amp;&amp;q.local=='circle';"/>
+              <vc op="eq" comp="CCC">
+               <data>
+                <axis name="attribute" nodeTest="attribute(Q{}class)" jsTest="return item.name=='class'"/>
+               </data>
+               <str val="pincolor-1"/>
+              </vc>
+             </filter>
+            </fn>
+           </choose>
+          </convert>
+         </att>
+         <att name="identicalColorCount">
+          <convert from="xs:integer" to="xs:string">
+           <varRef name="identicalColorCount" slot="1"/>
+          </convert>
+         </att>
+         <choose line="45">
+          <fn name="exists">
+           <axis name="attribute" nodeTest="attribute(Q{}id)" jsTest="return item.name=='id'"/>
+          </fn>
+          <att line="46" name="id">
+           <convert from="xs:untypedAtomic" to="xs:string">
+            <data>
+             <axis name="attribute" nodeTest="attribute(Q{}id)" jsTest="return item.name=='id'"/>
+            </data>
+           </convert>
+          </att>
+         </choose>
+         <forEach line="48">
+          <filter flags="b">
+           <axis name="child" nodeTest="element(Q{http://www.w3.org/2000/svg}circle)" jsTest="var q=SaxonJS.U.nameOfNode(item); return item.nodeType==1 &amp;&amp; q.uri=='http://www.w3.org/2000/svg'&amp;&amp;q.local=='circle';"/>
+           <fn name="starts-with">
+            <cvUntyped to="xs:string">
+             <data>
+              <axis name="attribute" nodeTest="attribute(Q{}class)" jsTest="return item.name=='class'"/>
+             </data>
+            </cvUntyped>
+            <str val="color-"/>
+           </fn>
+          </filter>
+          <elem line="49" name="color" namespaces="xs=http://www.w3.org/2001/XMLSchema svg=http://www.w3.org/2000/svg pcm=http://www.masereeuw.nl/xslt/2.0/functions">
+           <valueOf>
+            <fn name="substring-after">
+             <cvUntyped to="xs:string">
+              <data>
+               <axis name="attribute" nodeTest="attribute(Q{}class)" jsTest="return item.name=='class'"/>
+              </data>
+             </cvUntyped>
+             <str val="color-"/>
+            </fn>
+           </valueOf>
+          </elem>
+         </forEach>
+        </sequence>
+       </elem>
+      </let>
+     </forEach>
+    </elem>
+   </sequence>
+  </template>
+ </co>
+ <co id="2" binds="">
+  <globalVariable name="Q{}boardcolor" type="xs:string" line="27" module="file:/home/pieter/saxonjs-experimenten/mastermind/mastermind-webinterface-svg.xslt" visibility="PRIVATE" jsAcceptor="return SaxonJS.U.Atomic.string.cast(val);" jsCardCheck="function c(n) {return n==1;};">
+   <str val="#552200"/>
+  </globalVariable>
+ </co>
+ <co id="3" binds="4 5">
+  <function name="Q{http://www.masereeuw.nl/xslt/2.0/functions}isSVG" line="66" module="file:/home/pieter/saxonjs-experimenten/mastermind/mastermind-webinterface.xslt" eval="7" flags="pU" as="xs:boolean" slots="0">
+   <tailCallLoop role="body" vn="20" baseUri="file:/home/pieter/saxonjs-experimenten/mastermind/mastermind-webinterface.xslt" ns="xsl=http://www.w3.org/1999/XSL/Transform ixsl=http://saxonica.com/ns/interactiveXSLT xs=http://www.w3.org/2001/XMLSchema pcm=http://www.masereeuw.nl/xslt/2.0/functions svg=http://www.w3.org/2000/svg" line="67">
+    <ufCall name="Q{http://www.masereeuw.nl/xslt/2.0/functions}boolFromInput" tailCall="foreign" bSlot="0" eval="7 0">
+     <check card="1" diag="0|0||pcm:boolFromInput">
+      <slash>
+       <ufCall name="Q{http://www.masereeuw.nl/xslt/2.0/functions}page" tailCall="false" bSlot="1"/>
+       <fn name="key">
+        <str val="Q{http://saxon.sf.net/}kk103"/>
+        <str val="renderAsSVG"/>
+        <dot type="document-node()"/>
+       </fn>
+      </slash>
+     </check>
+     <str val="checked"/>
+    </ufCall>
+   </tailCallLoop>
+  </function>
+ </co>
+ <co id="6" binds="7 8 8 9 10 6">
+  <template name="Q{}placeScorePin" flags="os" line="202" module="file:/home/pieter/saxonjs-experimenten/mastermind/mastermind-webinterface-svg.xslt" slots="4">
+   <sequence role="body" vn="20" baseUri="file:/home/pieter/saxonjs-experimenten/mastermind/mastermind-webinterface-svg.xslt" ns="xsl=http://www.w3.org/1999/XSL/Transform xs=http://www.w3.org/2001/XMLSchema pcm=http://www.masereeuw.nl/xslt/2.0/functions svg=http://www.w3.org/2000/svg" line="203">
+    <param name="scorePins" slot="0" flags="r" as="xs:integer*">
+     <treat role="conversion" as="xs:integer" jsTest="return SaxonJS.U.Atomic.integer.matches(item);" diag="8|0|XTTE0590|scorePins">
+      <cvUntyped to="xs:integer">
+       <data>
+        <supplied slot="0"/>
+       </data>
+      </cvUntyped>
+     </treat>
+    </param>
+    <param line="204" name="whichPin" slot="1" flags="r" as="xs:integer">
+     <treat role="conversion" as="xs:integer" jsTest="return SaxonJS.U.Atomic.integer.matches(item);" diag="8|0|XTTE0590|whichPin">
+      <check card="1" diag="8|0|XTTE0590|whichPin">
+       <cvUntyped to="xs:integer">
+        <data>
+         <supplied slot="1"/>
+        </data>
+       </cvUntyped>
+      </check>
+     </treat>
+    </param>
+    <param line="205" name="baseX" slot="2" flags="r" as="xs:integer">
+     <treat role="conversion" as="xs:integer" jsTest="return SaxonJS.U.Atomic.integer.matches(item);" diag="8|0|XTTE0590|baseX">
+      <check card="1" diag="8|0|XTTE0590|baseX">
+       <cvUntyped to="xs:integer">
+        <data>
+         <supplied slot="2"/>
+        </data>
+       </cvUntyped>
+      </check>
+     </treat>
+    </param>
+    <param line="206" name="baseY" slot="3" flags="r" as="xs:integer">
+     <treat role="conversion" as="xs:integer" jsTest="return SaxonJS.U.Atomic.integer.matches(item);" diag="8|0|XTTE0590|baseY">
+      <check card="1" diag="8|0|XTTE0590|baseY">
+       <cvUntyped to="xs:integer">
+        <data>
+         <supplied slot="3"/>
+        </data>
+       </cvUntyped>
+      </check>
+     </treat>
+    </param>
+    <choose line="208">
+     <subscript>
+      <varRef name="scorePins" slot="0"/>
+      <varRef name="whichPin" slot="1"/>
+     </subscript>
+     <sequence line="216">
+      <elem xmlns:svg="http://www.w3.org/2000/svg" name="svg:circle" namespaces="xs=http://www.w3.org/2001/XMLSchema svg=http://www.w3.org/2000/svg pcm=http://www.masereeuw.nl/xslt/2.0/functions">
+       <sequence>
+        <att name="cx">
+         <convert from="xs:integer" to="xs:string">
+          <choose line="214">
+           <vc op="le" onEmpty="0" comp="CAVC">
+            <varRef name="whichPin" slot="1"/>
+            <gVarRef name="Q{http://saxon.sf.net/generated-variable}gg157845009" bSlot="0"/>
+           </vc>
+           <arith op="+" calc="i+i">
+            <varRef name="baseX" slot="2"/>
+            <arith op="*" calc="i*i">
+             <varRef name="whichPin" slot="1"/>
+             <gVarRef name="Q{}svgPinWidth" bSlot="1"/>
+            </arith>
+           </arith>
+           <true/>
+           <arith op="+" calc="i+i">
+            <varRef name="baseX" slot="2"/>
+            <arith op="*" calc="i*i">
+             <cast as="xs:integer" emptiable="0">
+              <arith op="div" calc="i/i">
+               <varRef name="whichPin" slot="1"/>
+               <int val="2"/>
+              </arith>
+             </cast>
+             <gVarRef name="Q{}svgPinWidth" bSlot="2"/>
+            </arith>
+           </arith>
+          </choose>
+         </convert>
+        </att>
+        <att name="cy">
+         <convert from="xs:integer" to="xs:string">
+          <choose line="211">
+           <vc op="le" onEmpty="0" comp="CAVC">
+            <varRef name="whichPin" slot="1"/>
+            <gVarRef name="Q{http://saxon.sf.net/generated-variable}gg1802321690" bSlot="3"/>
+           </vc>
+           <arith op="+" calc="i+i">
+            <varRef name="baseY" slot="3"/>
+            <int val="31"/>
+           </arith>
+           <true/>
+           <arith op="+" calc="i+i">
+            <varRef name="baseY" slot="3"/>
+            <int val="93"/>
+           </arith>
+          </choose>
+         </convert>
+        </att>
+        <att name="r">
+         <gVarRef name="Q{http://saxon.sf.net/generated-variable}gg537279712" bSlot="4"/>
+        </att>
+        <att name="class">
+         <fn name="concat">
+          <str val="pincolor-"/>
+          <subscript>
+           <varRef name="scorePins" slot="0"/>
+           <varRef name="whichPin" slot="1"/>
+          </subscript>
+         </fn>
+        </att>
+       </sequence>
+      </elem>
+      <callT line="218" name="placeScorePin" bSlot="5">
+       <withParam name="scorePins" flags="c" as="xs:integer*">
+        <varRef line="219" name="scorePins" slot="0"/>
+       </withParam>
+       <withParam name="whichPin" flags="c" as="xs:integer">
+        <arith line="220" op="+" calc="i+i">
+         <varRef name="whichPin" slot="1"/>
+         <int val="1"/>
+        </arith>
+       </withParam>
+       <withParam name="baseX" flags="c" as="xs:integer">
+        <varRef line="221" name="baseX" slot="2"/>
+       </withParam>
+       <withParam name="baseY" flags="c" as="xs:integer">
+        <varRef line="222" name="baseY" slot="3"/>
+       </withParam>
+      </callT>
+     </sequence>
+    </choose>
+   </sequence>
+  </template>
+ </co>
+ <co id="11" binds="12 13">
+  <globalVariable name="Q{}svgBoardWidth" type="xs:integer" line="17" module="file:/home/pieter/saxonjs-experimenten/mastermind/mastermind-webinterface-svg.xslt" visibility="PRIVATE" jsAcceptor="return SaxonJS.U.Atomic.integer.cast(val);" jsCardCheck="function c(n) {return n==1;};">
+   <arith vn="20" baseUri="file:/home/pieter/saxonjs-experimenten/mastermind/mastermind-webinterface-svg.xslt" ns="xsl=http://www.w3.org/1999/XSL/Transform xs=http://www.w3.org/2001/XMLSchema pcm=http://www.masereeuw.nl/xslt/2.0/functions svg=http://www.w3.org/2000/svg" line="17" op="+" calc="i+i">
+    <arith op="*" calc="i*i">
+     <int val="125"/>
+     <gVarRef name="Q{}maxColumns" bSlot="0"/>
+    </arith>
+    <gVarRef name="Q{}widthForScore" bSlot="1"/>
+   </arith>
+  </globalVariable>
+ </co>
+ <co id="14" binds="12 14 14">
+  <function name="Q{http://www.masereeuw.nl/xslt/2.0/functions}auxCountColorsAtOtherColumns" line="190" module="file:/home/pieter/saxonjs-experimenten/mastermind/mastermind.xslt" eval="7" flags="pU" as="xs:integer" slots="7">
+   <arg name="newSeq" as="xs:integer+"/>
+   <arg name="oldSeq" as="xs:integer+"/>
+   <arg name="colNum" as="xs:integer+"/>
+   <tailCallLoop role="body" vn="20" baseUri="file:/home/pieter/saxonjs-experimenten/mastermind/mastermind.xslt" ns="xsl=http://www.w3.org/1999/XSL/Transform xs=http://www.w3.org/2001/XMLSchema pcm=http://www.masereeuw.nl/xslt/2.0/functions" line="196">
+    <choose>
+     <vc op="gt" onEmpty="0" comp="CAVC">
+      <check card="?" diag="1|0||gt">
+       <varRef name="colNum" slot="2"/>
+      </check>
+      <gVarRef name="Q{}maxColumns" bSlot="0"/>
+     </vc>
+     <int val="0"/>
+     <true/>
+     <let line="198" var="color" as="xs:integer" slot="3" eval="7">
+      <check card="1" diag="3|0|XTTE0570|color">
+       <filter flags="ip">
+        <varRef name="newSeq" slot="0"/>
+        <varRef name="colNum" slot="2"/>
+       </filter>
+      </check>
+      <let line="201" var="matchingColumns" as="xs:integer*" slot="4" eval="3">
+       <choose>
+        <compareToInt op="ne" val="0">
+         <varRef name="color" slot="3"/>
+        </compareToInt>
+        <for var="i" as="xs:integer" slot="5">
+         <to role="in">
+          <int val="1"/>
+          <fn name="count">
+           <varRef name="newSeq" slot="0"/>
+          </fn>
+         </to>
+         <choose role="return">
+          <vc op="eq" onEmpty="0" comp="CAVC">
+           <subscript>
+            <varRef name="oldSeq" slot="1"/>
+            <varRef name="i" slot="5"/>
+           </subscript>
+           <varRef name="color" slot="3"/>
+          </vc>
+          <varRef name="i" slot="5"/>
+         </choose>
+        </for>
+       </choose>
+       <choose line="207">
+        <fn name="exists">
+         <varRef name="matchingColumns" slot="4"/>
+        </fn>
+        <arith line="211" op="+" calc="i+i">
+         <int val="1"/>
+         <ufCall name="Q{http://www.masereeuw.nl/xslt/2.0/functions}auxCountColorsAtOtherColumns" tailCall="false" bSlot="1" eval="4 4 4">
+          <varRef name="newSeq" slot="0"/>
+          <let var="column" as="xs:integer" slot="6" eval="7">
+           <check card="1" diag="0|1||pcm:zeroColumn">
+            <first>
+             <varRef name="matchingColumns" slot="4"/>
+            </first>
+           </check>
+           <sequence line="35">
+            <fn name="subsequence">
+             <varRef line="211" name="oldSeq" slot="1"/>
+             <int val="1"/>
+             <arith op="-" calc="i-i">
+              <varRef name="column" slot="6"/>
+              <int val="1"/>
+             </arith>
+            </fn>
+            <int val="0"/>
+            <fn name="subsequence">
+             <varRef line="211" name="oldSeq" slot="1"/>
+             <arith op="+" calc="i+i">
+              <varRef name="column" slot="6"/>
+              <int val="1"/>
+             </arith>
+            </fn>
+           </sequence>
+          </let>
+          <check card="+" diag="0|2||pcm:auxCountColorsAtOtherColumns">
+           <arith op="+" calc="i+i">
+            <check card="?" diag="1|0||+">
+             <varRef name="colNum" slot="2"/>
+            </check>
+            <int val="1"/>
+           </arith>
+          </check>
+         </ufCall>
+        </arith>
+        <true/>
+        <ufCall line="215" name="Q{http://www.masereeuw.nl/xslt/2.0/functions}auxCountColorsAtOtherColumns" tailCall="self" bSlot="2" eval="4 4 4">
+         <varRef name="newSeq" slot="0"/>
+         <varRef name="oldSeq" slot="1"/>
+         <check card="+" diag="0|2||pcm:auxCountColorsAtOtherColumns">
+          <arith op="+" calc="i+i">
+           <check card="?" diag="1|0||+">
+            <varRef name="colNum" slot="2"/>
+           </check>
+           <int val="1"/>
+          </arith>
+         </check>
+        </ufCall>
+       </choose>
+      </let>
+     </let>
+    </choose>
+   </tailCallLoop>
+  </function>
+ </co>
+ <co id="15" binds="">
+  <function name="Q{http://www.masereeuw.nl/xslt/2.0/functions}get" line="32" module="file:/home/pieter/saxonjs-experimenten/mastermind/mastermind-webinterface.xslt" eval="7" flags="pU" as="item()?" slots="2">
+   <arg name="object" as="item()"/>
+   <arg name="property" as="xs:string"/>
+   <check role="body" vn="20" baseUri="file:/home/pieter/saxonjs-experimenten/mastermind/mastermind-webinterface.xslt" ns="xsl=http://www.w3.org/1999/XSL/Transform ixsl=http://saxonica.com/ns/interactiveXSLT xs=http://www.w3.org/2001/XMLSchema pcm=http://www.masereeuw.nl/xslt/2.0/functions svg=http://www.w3.org/2000/svg" line="35" card="?" diag="5|0|XTTE0780|pcm:get">
+    <ifCall xmlns:ixsl="http://saxonica.com/ns/interactiveXSLT" name="ixsl:get" type="item()*">
+     <varRef name="object" slot="0"/>
+     <varRef name="property" slot="1"/>
+    </ifCall>
+   </check>
+  </function>
+ </co>
+ <co id="16" binds="0 17">
+  <template name="Q{}collectMoves" flags="os" line="197" module="file:/home/pieter/saxonjs-experimenten/mastermind/mastermind-webinterface.xslt" slots="1">
+   <sequence role="body" vn="20" baseUri="file:/home/pieter/saxonjs-experimenten/mastermind/mastermind-webinterface.xslt" ns="xsl=http://www.w3.org/1999/XSL/Transform ixsl=http://saxonica.com/ns/interactiveXSLT xs=http://www.w3.org/2001/XMLSchema pcm=http://www.masereeuw.nl/xslt/2.0/functions svg=http://www.w3.org/2000/svg" line="198">
+    <param name="mastermindDiv" slot="0" flags="r" as="element()">
+     <treat role="conversion" as="element()" jsTest="return SaxonJS.U.isNode(item) &amp;&amp; item.nodeType==1;" diag="8|0|XTTE0590|mastermindDiv">
+      <check card="1" diag="8|0|XTTE0590|mastermindDiv">
+       <supplied slot="0"/>
+      </check>
+     </treat>
+    </param>
+    <choose line="201">
+     <fn name="exists">
+      <slash simple="1">
+       <varRef name="mastermindDiv" slot="0"/>
+       <axis name="child" nodeTest="element(Q{http://www.w3.org/2000/svg}svg)" jsTest="var q=SaxonJS.U.nameOfNode(item); return item.nodeType==1 &amp;&amp; q.uri=='http://www.w3.org/2000/svg'&amp;&amp;q.local=='svg';"/>
+      </slash>
+     </fn>
+     <callT line="202" name="collectSVGMoves" bSlot="0">
+      <withParam name="mastermindDiv" flags="c" as="element()">
+       <varRef name="mastermindDiv" slot="0"/>
+      </withParam>
+     </callT>
+     <true/>
+     <callT line="205" name="collectHTMLMoves" bSlot="1">
+      <withParam name="mastermindDiv" flags="c" as="element()">
+       <treat as="element(Q{}div)" jsTest="var q=SaxonJS.U.nameOfNode(item); return q.uri==''&amp;&amp;q.local=='div';" diag="8|0||mastermindDiv">
+        <varRef name="mastermindDiv" slot="0"/>
+       </treat>
+      </withParam>
+     </callT>
+    </choose>
+   </sequence>
+  </template>
+ </co>
+ <co id="18" binds="19 20">
+  <function name="Q{http://www.masereeuw.nl/xslt/2.0/functions}checkColors" line="147" module="file:/home/pieter/saxonjs-experimenten/mastermind/mastermind.xslt" eval="7" flags="pU" as="xs:boolean" slots="4">
+   <arg name="newSeq" as="xs:integer+"/>
+   <arg name="earlierMove" as="element(Q{}move)?"/>
+   <let role="body" vn="20" baseUri="file:/home/pieter/saxonjs-experimenten/mastermind/mastermind.xslt" ns="xsl=http://www.w3.org/1999/XSL/Transform xs=http://www.w3.org/2001/XMLSchema pcm=http://www.masereeuw.nl/xslt/2.0/functions" line="151" var="oldSeq" as="xs:integer+" slot="2" eval="3">
+    <check card="+" diag="3|0|XTTE0570|oldSeq">
+     <for var="color" as="element(Q{}color)" slot="3">
+      <slash role="in" simple="1">
+       <varRef name="earlierMove" slot="1"/>
+       <axis name="descendant" nodeTest="element(Q{}color)" jsTest="var q=SaxonJS.U.nameOfNode(item); return item.nodeType==1 &amp;&amp; q.uri==''&amp;&amp;q.local=='color';"/>
+      </slash>
+      <cast role="return" as="xs:integer" emptiable="0">
+       <data>
+        <varRef name="color" slot="3"/>
+       </data>
+      </cast>
+     </for>
+    </check>
+    <choose line="158">
+     <vc op="eq" onEmpty="0" comp="GAC|http://www.w3.org/2005/xpath-functions/collation/codepoint">
+      <ufCall name="Q{http://www.masereeuw.nl/xslt/2.0/functions}countColorsAtSameColumns" tailCall="false" bSlot="0" eval="4 4">
+       <varRef name="newSeq" slot="0"/>
+       <varRef name="oldSeq" slot="2"/>
+      </ufCall>
+      <cast as="xs:integer" emptiable="1">
+       <data>
+        <slash simple="1">
+         <varRef name="earlierMove" slot="1"/>
+         <axis name="attribute" nodeTest="attribute(Q{}identicalColumnCount)" jsTest="return item.name=='identicalColumnCount'"/>
+        </slash>
+       </data>
+      </cast>
+     </vc>
+     <choose line="160">
+      <vc op="eq" onEmpty="0" comp="GAC|http://www.w3.org/2005/xpath-functions/collation/codepoint">
+       <ufCall name="Q{http://www.masereeuw.nl/xslt/2.0/functions}countColorsAtOtherColumns" tailCall="false" bSlot="1" eval="4 4">
+        <varRef name="newSeq" slot="0"/>
+        <varRef name="oldSeq" slot="2"/>
+       </ufCall>
+       <cast as="xs:integer" emptiable="1">
+        <data>
+         <slash simple="1">
+          <varRef name="earlierMove" slot="1"/>
+          <axis name="attribute" nodeTest="attribute(Q{}identicalColorCount)" jsTest="return item.name=='identicalColorCount'"/>
+         </slash>
+        </data>
+       </cast>
+      </vc>
+      <fn line="161" name="not">
+       <fn name="deep-equal">
+        <varRef name="oldSeq" slot="2"/>
+        <varRef name="newSeq" slot="0"/>
+       </fn>
+      </fn>
+      <true/>
+      <false/>
+     </choose>
+     <true/>
+     <false/>
+    </choose>
+   </let>
+  </function>
+ </co>
+ <co id="21" binds="">
+  <globalVariable name="Q{}svgPinRadius" type="xs:integer" line="22" module="file:/home/pieter/saxonjs-experimenten/mastermind/mastermind-webinterface-svg.xslt" visibility="PRIVATE" jsAcceptor="return SaxonJS.U.Atomic.integer.cast(val);" jsCardCheck="function c(n) {return n==1;};">
+   <int val="25"/>
+  </globalVariable>
+ </co>
+ <co id="5" binds="">
+  <function name="Q{http://www.masereeuw.nl/xslt/2.0/functions}page" line="28" module="file:/home/pieter/saxonjs-experimenten/mastermind/mastermind-webinterface.xslt" eval="7" flags="pU" as="document-node()" slots="0">
+   <check role="body" vn="20" baseUri="file:/home/pieter/saxonjs-experimenten/mastermind/mastermind-webinterface.xslt" ns="xsl=http://www.w3.org/1999/XSL/Transform ixsl=http://saxonica.com/ns/interactiveXSLT xs=http://www.w3.org/2001/XMLSchema pcm=http://www.masereeuw.nl/xslt/2.0/functions svg=http://www.w3.org/2000/svg" line="29" card="1" diag="5|0|XTTE0780|pcm:page">
+    <ifCall xmlns:ixsl="http://saxonica.com/ns/interactiveXSLT" name="ixsl:page" type="document-node()?"/>
+   </check>
+  </function>
+ </co>
+ <co id="22" binds="">
+  <globalVariable name="Q{}svgPinClassPrefix" type="xs:string" line="23" module="file:/home/pieter/saxonjs-experimenten/mastermind/mastermind-webinterface-svg.xslt" visibility="PRIVATE" jsAcceptor="return SaxonJS.U.Atomic.string.cast(val);" jsCardCheck="function c(n) {return n==1;};">
+   <str val="pincolor-"/>
+  </globalVariable>
+ </co>
+ <co id="23" binds="18 23">
+  <function name="Q{http://www.masereeuw.nl/xslt/2.0/functions}checkEarlierMove" line="122" module="file:/home/pieter/saxonjs-experimenten/mastermind/mastermind.xslt" eval="7" flags="pU" as="xs:boolean" slots="2">
+   <arg name="newSeq" as="xs:integer+"/>
+   <arg name="earlierMove" as="element(Q{}move)?"/>
+   <tailCallLoop role="body" vn="20" baseUri="file:/home/pieter/saxonjs-experimenten/mastermind/mastermind.xslt" ns="xsl=http://www.w3.org/1999/XSL/Transform xs=http://www.w3.org/2001/XMLSchema pcm=http://www.masereeuw.nl/xslt/2.0/functions" line="127">
+    <choose>
+     <fn name="exists">
+      <varRef name="earlierMove" slot="1"/>
+     </fn>
+     <choose line="130">
+      <ufCall line="128" name="Q{http://www.masereeuw.nl/xslt/2.0/functions}checkColors" tailCall="false" bSlot="0" eval="4 6">
+       <varRef name="newSeq" slot="0"/>
+       <varRef name="earlierMove" slot="1"/>
+      </ufCall>
+      <ufCall line="131" name="Q{http://www.masereeuw.nl/xslt/2.0/functions}checkEarlierMove" tailCall="self" bSlot="1" eval="4 8">
+       <varRef name="newSeq" slot="0"/>
+       <slash>
+        <varRef name="earlierMove" slot="1"/>
+        <first>
+         <axis name="following-sibling" nodeTest="element(Q{}move)" jsTest="var q=SaxonJS.U.nameOfNode(item); return item.nodeType==1 &amp;&amp; q.uri==''&amp;&amp;q.local=='move';"/>
+        </first>
+       </slash>
+      </ufCall>
+      <true/>
+      <false/>
+     </choose>
+     <true/>
+     <true/>
+    </choose>
+   </tailCallLoop>
+  </function>
+ </co>
+ <co id="24" binds="23">
+  <function name="Q{http://www.masereeuw.nl/xslt/2.0/functions}checkEarlierMoves" line="111" module="file:/home/pieter/saxonjs-experimenten/mastermind/mastermind.xslt" eval="7" flags="pU" as="xs:boolean" slots="2">
+   <arg name="newSeq" as="xs:integer+"/>
+   <arg name="earlierMoves" as="element(Q{}moves)"/>
+   <tailCallLoop role="body" vn="20" baseUri="file:/home/pieter/saxonjs-experimenten/mastermind/mastermind.xslt" ns="xsl=http://www.w3.org/1999/XSL/Transform xs=http://www.w3.org/2001/XMLSchema pcm=http://www.masereeuw.nl/xslt/2.0/functions" line="115">
+    <ufCall name="Q{http://www.masereeuw.nl/xslt/2.0/functions}checkEarlierMove" tailCall="foreign" bSlot="0" eval="4 8">
+     <varRef name="newSeq" slot="0"/>
+     <slash>
+      <varRef name="earlierMoves" slot="1"/>
+      <first>
+       <axis name="child" nodeTest="element(Q{}move)" jsTest="var q=SaxonJS.U.nameOfNode(item); return item.nodeType==1 &amp;&amp; q.uri==''&amp;&amp;q.local=='move';"/>
+      </first>
+     </slash>
+    </ufCall>
+   </tailCallLoop>
+  </function>
+ </co>
+ <co id="17" binds="1 1">
+  <template name="Q{}collectHTMLMoves" flags="os" line="16" module="file:/home/pieter/saxonjs-experimenten/mastermind/mastermind-webinterface-html.xslt" slots="1">
+   <sequence role="body" vn="20" baseUri="file:/home/pieter/saxonjs-experimenten/mastermind/mastermind-webinterface-html.xslt" ns="xsl=http://www.w3.org/1999/XSL/Transform xs=http://www.w3.org/2001/XMLSchema pcm=http://www.masereeuw.nl/xslt/2.0/functions svg=http://www.w3.org/2000/svg" line="17">
+    <param name="mastermindDiv" slot="0" flags="r" as="element(Q{}div)">
+     <treat role="conversion" as="element(Q{}div)" jsTest="var q=SaxonJS.U.nameOfNode(item); return SaxonJS.U.isNode(item) &amp;&amp; item.nodeType==1 &amp;&amp; q.uri==''&amp;&amp;q.local=='div';" diag="8|0|XTTE0590|mastermindDiv">
+      <check card="1" diag="8|0|XTTE0590|mastermindDiv">
+       <supplied slot="0"/>
+      </check>
+     </treat>
+    </param>
+    <elem line="19" name="moves" namespaces="xs=http://www.w3.org/2001/XMLSchema svg=http://www.w3.org/2000/svg pcm=http://www.masereeuw.nl/xslt/2.0/functions">
+     <forEach>
+      <slash>
+       <slash>
+        <filter flags="">
+         <slash simple="1">
+          <varRef name="mastermindDiv" slot="0"/>
+          <axis name="child" nodeTest="*:table" jsTest="var q=SaxonJS.U.nameOfNode(item); return SaxonJS.U.isNode(item) &amp;&amp; item.nodeType==1&amp;&amp;q.local == 'table'"/>
+         </slash>
+         <vc op="eq" comp="CCC">
+          <data>
+           <axis name="attribute" nodeTest="attribute(Q{}id)" jsTest="return item.name=='id'"/>
+          </data>
+          <str val="moves"/>
+         </vc>
+        </filter>
+        <axis name="child" nodeTest="*:tbody" jsTest="var q=SaxonJS.U.nameOfNode(item); return SaxonJS.U.isNode(item) &amp;&amp; item.nodeType==1&amp;&amp;q.local == 'tbody'"/>
+       </slash>
+       <axis name="child" nodeTest="*:tr" jsTest="var q=SaxonJS.U.nameOfNode(item); return SaxonJS.U.isNode(item) &amp;&amp; item.nodeType==1&amp;&amp;q.local == 'tr'"/>
+      </slash>
+      <elem line="22" name="move" namespaces="xs=http://www.w3.org/2001/XMLSchema svg=http://www.w3.org/2000/svg pcm=http://www.masereeuw.nl/xslt/2.0/functions">
+       <sequence>
+        <att name="identicalColumnCount">
+         <convert from="xs:integer" to="xs:string">
+          <ufCall name="Q{http://www.masereeuw.nl/xslt/2.0/functions}intFromWidget" tailCall="false" bSlot="0" eval="4">
+           <check card="1" diag="0|0||pcm:intFromWidget">
+            <union op="|">
+             <filter flags="">
+              <slash>
+               <axis name="child" nodeTest="*:td" jsTest="var q=SaxonJS.U.nameOfNode(item); return SaxonJS.U.isNode(item) &amp;&amp; item.nodeType==1&amp;&amp;q.local == 'td'"/>
+               <axis name="child" nodeTest="*:input" jsTest="var q=SaxonJS.U.nameOfNode(item); return SaxonJS.U.isNode(item) &amp;&amp; item.nodeType==1&amp;&amp;q.local == 'input'"/>
+              </slash>
+              <vc op="eq" comp="CCC">
+               <data>
+                <axis name="attribute" nodeTest="attribute(Q{}name)" jsTest="return item.name=='name'"/>
+               </data>
+               <str val="identicalColumnCount"/>
+              </vc>
+             </filter>
+             <filter flags="">
+              <slash>
+               <axis name="child" nodeTest="*:td" jsTest="var q=SaxonJS.U.nameOfNode(item); return SaxonJS.U.isNode(item) &amp;&amp; item.nodeType==1&amp;&amp;q.local == 'td'"/>
+               <axis name="child" nodeTest="*:select" jsTest="var q=SaxonJS.U.nameOfNode(item); return SaxonJS.U.isNode(item) &amp;&amp; item.nodeType==1&amp;&amp;q.local == 'select'"/>
+              </slash>
+              <vc op="eq" comp="CCC">
+               <data>
+                <axis name="attribute" nodeTest="attribute(Q{}name)" jsTest="return item.name=='name'"/>
+               </data>
+               <str val="identicalColumnCount"/>
+              </vc>
+             </filter>
+            </union>
+           </check>
+          </ufCall>
+         </convert>
+        </att>
+        <att name="identicalColorCount">
+         <convert from="xs:integer" to="xs:string">
+          <ufCall name="Q{http://www.masereeuw.nl/xslt/2.0/functions}intFromWidget" tailCall="false" bSlot="1" eval="4">
+           <check card="1" diag="0|0||pcm:intFromWidget">
+            <union op="|">
+             <filter flags="">
+              <slash>
+               <axis name="child" nodeTest="*:td" jsTest="var q=SaxonJS.U.nameOfNode(item); return SaxonJS.U.isNode(item) &amp;&amp; item.nodeType==1&amp;&amp;q.local == 'td'"/>
+               <axis name="child" nodeTest="*:input" jsTest="var q=SaxonJS.U.nameOfNode(item); return SaxonJS.U.isNode(item) &amp;&amp; item.nodeType==1&amp;&amp;q.local == 'input'"/>
+              </slash>
+              <vc op="eq" comp="CCC">
+               <data>
+                <axis name="attribute" nodeTest="attribute(Q{}name)" jsTest="return item.name=='name'"/>
+               </data>
+               <str val="identicalColorCount"/>
+              </vc>
+             </filter>
+             <filter flags="">
+              <slash>
+               <axis name="child" nodeTest="*:td" jsTest="var q=SaxonJS.U.nameOfNode(item); return SaxonJS.U.isNode(item) &amp;&amp; item.nodeType==1&amp;&amp;q.local == 'td'"/>
+               <axis name="child" nodeTest="*:select" jsTest="var q=SaxonJS.U.nameOfNode(item); return SaxonJS.U.isNode(item) &amp;&amp; item.nodeType==1&amp;&amp;q.local == 'select'"/>
+              </slash>
+              <vc op="eq" comp="CCC">
+               <data>
+                <axis name="attribute" nodeTest="attribute(Q{}name)" jsTest="return item.name=='name'"/>
+               </data>
+               <str val="identicalColorCount"/>
+              </vc>
+             </filter>
+            </union>
+           </check>
+          </ufCall>
+         </convert>
+        </att>
+        <choose line="23">
+         <fn name="exists">
+          <axis name="attribute" nodeTest="attribute(Q{}id)" jsTest="return item.name=='id'"/>
+         </fn>
+         <att line="24" name="id">
+          <convert from="xs:untypedAtomic" to="xs:string">
+           <data>
+            <axis name="attribute" nodeTest="attribute(Q{}id)" jsTest="return item.name=='id'"/>
+           </data>
+          </convert>
+         </att>
+        </choose>
+        <forEach line="26">
+         <slash>
+          <slash>
+           <axis name="child" nodeTest="*:td" jsTest="var q=SaxonJS.U.nameOfNode(item); return SaxonJS.U.isNode(item) &amp;&amp; item.nodeType==1&amp;&amp;q.local == 'td'"/>
+           <axis name="child" nodeTest="*:img" jsTest="var q=SaxonJS.U.nameOfNode(item); return SaxonJS.U.isNode(item) &amp;&amp; item.nodeType==1&amp;&amp;q.local == 'img'"/>
+          </slash>
+          <axis name="attribute" nodeTest="attribute(Q{}alt)" jsTest="return item.name=='alt'"/>
+         </slash>
+         <elem line="27" name="color" namespaces="xs=http://www.w3.org/2001/XMLSchema svg=http://www.w3.org/2000/svg pcm=http://www.masereeuw.nl/xslt/2.0/functions">
+          <valueOf>
+           <fn name="substring-after">
+            <cvUntyped to="xs:string">
+             <data>
+              <dot type="attribute(Q{}alt)"/>
+             </data>
+            </cvUntyped>
+            <str val="color #"/>
+           </fn>
+          </valueOf>
+         </elem>
+        </forEach>
+       </sequence>
+      </elem>
+     </forEach>
+    </elem>
+   </sequence>
+  </template>
+ </co>
+ <co id="25" binds="26 27 27 25 28 27 29 30 31 32 25 33 33">
+  <mode name="Q{}svg" onNo="TC" flags="W" patternSlots="0">
+   <templateRule prec="2" prio="0.0" seq="2" rank="0" minImp="0" slots="1" flags="os" line="168" module="file:/home/pieter/saxonjs-experimenten/mastermind/mastermind-webinterface-svg.xslt">
+    <p.nodeTest role="match" test="element(Q{}color)" jsTest="var q=SaxonJS.U.nameOfNode(item); return SaxonJS.U.isNode(item) &amp;&amp; item.nodeType==1 &amp;&amp; q.uri==''&amp;&amp;q.local=='color';"/>
+    <sequence role="action" vn="20" baseUri="file:/home/pieter/saxonjs-experimenten/mastermind/mastermind-webinterface-svg.xslt" ns="xsl=http://www.w3.org/1999/XSL/Transform xs=http://www.w3.org/2001/XMLSchema pcm=http://www.masereeuw.nl/xslt/2.0/functions svg=http://www.w3.org/2000/svg" line="169">
+     <param name="y" slot="0" flags="r" as="xs:integer">
+      <treat role="conversion" as="xs:integer" jsTest="return SaxonJS.U.Atomic.integer.matches(item);" diag="8|0|XTTE0590|y">
+       <check card="1" diag="8|0|XTTE0590|y">
+        <cvUntyped to="xs:integer">
+         <data>
+          <supplied slot="0"/>
+         </data>
+        </cvUntyped>
+       </check>
+      </treat>
+     </param>
+     <elem xmlns:svg="http://www.w3.org/2000/svg" line="173" name="svg:circle" namespaces="xs=http://www.w3.org/2001/XMLSchema svg=http://www.w3.org/2000/svg pcm=http://www.masereeuw.nl/xslt/2.0/functions">
+      <sequence>
+       <att name="cx">
+        <convert from="xs:integer" to="xs:string">
+         <arith line="171" op="*" calc="i*i">
+          <arith op="+" calc="i+i">
+           <int val="1"/>
+           <fn name="count">
+            <slash simple="1">
+             <dot type="element(Q{}color)"/>
+             <axis name="preceding-sibling" nodeTest="element(Q{}color)" jsTest="var q=SaxonJS.U.nameOfNode(item); return item.nodeType==1 &amp;&amp; q.uri==''&amp;&amp;q.local=='color';"/>
+            </slash>
+           </fn>
+          </arith>
+          <int val="125"/>
+         </arith>
+        </convert>
+       </att>
+       <att name="cy">
+        <convert from="xs:integer" to="xs:string">
+         <varRef name="y" slot="0"/>
+        </convert>
+       </att>
+       <att name="r">
+        <str val="50"/>
+       </att>
+       <att name="class">
+        <fn name="concat">
+         <str val="color-"/>
+         <atomSing card="?" diag="0|1||concat">
+          <dot type="element(Q{}color)"/>
+         </atomSing>
+        </fn>
+       </att>
+      </sequence>
+     </elem>
+    </sequence>
+   </templateRule>
+   <templateRule prec="2" prio="0.0" seq="1" rank="0" minImp="0" slots="2" flags="os" line="140" module="file:/home/pieter/saxonjs-experimenten/mastermind/mastermind-webinterface-svg.xslt">
+    <p.nodeTest role="match" test="element(Q{}move)" jsTest="var q=SaxonJS.U.nameOfNode(item); return SaxonJS.U.isNode(item) &amp;&amp; item.nodeType==1 &amp;&amp; q.uri==''&amp;&amp;q.local=='move';"/>
+    <let role="action" vn="20" baseUri="file:/home/pieter/saxonjs-experimenten/mastermind/mastermind-webinterface-svg.xslt" ns="xsl=http://www.w3.org/1999/XSL/Transform xs=http://www.w3.org/2001/XMLSchema pcm=http://www.masereeuw.nl/xslt/2.0/functions svg=http://www.w3.org/2000/svg" line="141" var="y" as="xs:integer" slot="0" eval="7">
+     <arith op="*" calc="i*i">
+      <arith op="+" calc="i+i">
+       <int val="1"/>
+       <fn name="count">
+        <slash simple="1">
+         <dot type="element(Q{}move)"/>
+         <axis name="preceding-sibling" nodeTest="element(Q{}move)" jsTest="var q=SaxonJS.U.nameOfNode(item); return item.nodeType==1 &amp;&amp; q.uri==''&amp;&amp;q.local=='move';"/>
+        </slash>
+       </fn>
+      </arith>
+      <int val="125"/>
+     </arith>
+     <let line="143" var="yForRect" as="xs:integer" slot="1" eval="7">
+      <cast as="xs:integer" emptiable="0">
+       <arith op="-" calc="c-c">
+        <varRef name="y" slot="0"/>
+        <dec val="62.5"/>
+       </arith>
+      </cast>
+      <elem xmlns:svg="http://www.w3.org/2000/svg" line="146" name="svg:g" namespaces="xs=http://www.w3.org/2001/XMLSchema svg=http://www.w3.org/2000/svg pcm=http://www.masereeuw.nl/xslt/2.0/functions">
+       <sequence>
+        <att name="class">
+         <str val="move"/>
+        </att>
+        <choose line="147">
+         <fn name="exists">
+          <axis name="attribute" nodeTest="attribute(Q{}id)" jsTest="return item.name=='id'"/>
+         </fn>
+         <att line="148" name="id">
+          <convert from="xs:untypedAtomic" to="xs:string">
+           <data>
+            <axis name="attribute" nodeTest="attribute(Q{}id)" jsTest="return item.name=='id'"/>
+           </data>
+          </convert>
+         </att>
+        </choose>
+        <elem line="150" name="svg:rect">
+         <sequence>
+          <att name="width">
+           <gVarRef name="Q{http://saxon.sf.net/generated-variable}gg641414388" bSlot="0"/>
+          </att>
+          <att name="height">
+           <str val="125"/>
+          </att>
+          <att name="x">
+           <str val="0"/>
+          </att>
+          <att name="y">
+           <convert from="xs:integer" to="xs:string">
+            <varRef name="yForRect" slot="1"/>
+           </convert>
+          </att>
+          <att name="stroke">
+           <str val="black"/>
+          </att>
+          <att name="stroke-width">
+           <str val="1"/>
+          </att>
+          <att name="fill">
+           <str val="none"/>
+          </att>
+         </sequence>
+        </elem>
+        <elem line="152" name="svg:line">
+         <sequence>
+          <att name="x1">
+           <convert from="xs:integer" to="xs:string">
+            <gVarRef line="144" name="Q{http://saxon.sf.net/generated-variable}gg540821093" bSlot="1"/>
+           </convert>
+          </att>
+          <att name="x2">
+           <convert from="xs:integer" to="xs:string">
+            <gVarRef line="144" name="Q{http://saxon.sf.net/generated-variable}gg540821093" bSlot="2"/>
+           </convert>
+          </att>
+          <att name="y1">
+           <convert from="xs:integer" to="xs:string">
+            <varRef name="yForRect" slot="1"/>
+           </convert>
+          </att>
+          <att name="y2">
+           <convert from="xs:integer" to="xs:string">
+            <arith op="+" calc="i+i">
+             <varRef name="yForRect" slot="1"/>
+             <int val="125"/>
+            </arith>
+           </convert>
+          </att>
+          <att name="stroke">
+           <str val="black"/>
+          </att>
+          <att name="stroke-width">
+           <str val="1"/>
+          </att>
+         </sequence>
+        </elem>
+        <applyT line="154" mode="Q{}svg" flags="i" bSlot="3">
+         <axis role="select" name="child" nodeTest="node()" jsTest="return true;"/>
+         <withParam name="y" as="xs:integer">
+          <varRef name="y" slot="0"/>
+         </withParam>
+        </applyT>
+        <choose line="156">
+         <vc op="ne" onEmpty="1" comp="CCC">
+          <data>
+           <axis name="attribute" nodeTest="attribute(Q{}id)" jsTest="return item.name=='id'"/>
+          </data>
+          <str val="proposal"/>
+         </vc>
+         <callT line="157" name="paintScoreBox" bSlot="4">
+          <withParam name="baseX" flags="c" as="xs:integer">
+           <gVarRef line="144" name="Q{http://saxon.sf.net/generated-variable}gg540821093" bSlot="5"/>
+          </withParam>
+          <withParam name="baseY" flags="c" as="xs:integer">
+           <varRef line="159" name="yForRect" slot="1"/>
+          </withParam>
+         </callT>
+        </choose>
+       </sequence>
+      </elem>
+     </let>
+    </let>
+   </templateRule>
+   <templateRule prec="2" prio="0.0" seq="0" rank="0" minImp="0" slots="2" flags="os" line="57" module="file:/home/pieter/saxonjs-experimenten/mastermind/mastermind-webinterface-svg.xslt">
+    <p.nodeTest role="match" test="element(Q{}moves)" jsTest="var q=SaxonJS.U.nameOfNode(item); return SaxonJS.U.isNode(item) &amp;&amp; item.nodeType==1 &amp;&amp; q.uri==''&amp;&amp;q.local=='moves';"/>
+    <let role="action" vn="20" baseUri="file:/home/pieter/saxonjs-experimenten/mastermind/mastermind-webinterface-svg.xslt" ns="xsl=http://www.w3.org/1999/XSL/Transform xs=http://www.w3.org/2001/XMLSchema pcm=http://www.masereeuw.nl/xslt/2.0/functions svg=http://www.w3.org/2000/svg" line="58" var="svgBoardHeight" as="xs:integer" slot="0" eval="7">
+     <arith op="+" calc="i+i">
+      <arith op="*" calc="i*i">
+       <int val="125"/>
+       <fn name="count">
+        <axis name="child" nodeTest="element(Q{}move)" jsTest="var q=SaxonJS.U.nameOfNode(item); return item.nodeType==1 &amp;&amp; q.uri==''&amp;&amp;q.local=='move';"/>
+       </fn>
+      </arith>
+      <int val="125"/>
+     </arith>
+     <sequence line="63">
+      <elem xmlns:svg="http://www.w3.org/2000/svg" name="svg:svg" namespaces="xs=http://www.w3.org/2001/XMLSchema svg=http://www.w3.org/2000/svg pcm=http://www.masereeuw.nl/xslt/2.0/functions">
+       <sequence>
+        <att name="version">
+         <str val="1.1"/>
+        </att>
+        <att name="width">
+         <gVarRef name="Q{http://saxon.sf.net/generated-variable}gg1966922461" bSlot="6"/>
+        </att>
+        <att name="height">
+         <fn name="concat">
+          <convert from="xs:integer" to="xs:string">
+           <cast as="xs:integer" emptiable="0">
+            <arith op="*" calc="f*f">
+             <varRef name="svgBoardHeight" slot="0"/>
+             <gVarRef name="Q{}svgPointsToEmFactor" bSlot="7"/>
+            </arith>
+           </cast>
+          </convert>
+          <str val="em"/>
+         </fn>
+        </att>
+        <att name="viewBox">
+         <fn name="concat">
+          <str val="0 0 "/>
+          <gVarRef name="Q{http://saxon.sf.net/generated-variable}gg330548954" bSlot="8"/>
+          <str val=" "/>
+          <convert from="xs:integer" to="xs:string">
+           <varRef name="svgBoardHeight" slot="0"/>
+          </convert>
+         </fn>
+        </att>
+        <elem line="64" name="svg:style">
+         <sequence>
+          <att name="type">
+           <str val="text/css"/>
+          </att>
+          <valueOf>
+           <str val="&#xA;                &#xA;                circle.color-1 {&#xA;                    fill:red;&#xA;                }&#xA;                circle.color-2 {&#xA;                    fill:yellow;&#xA;                }&#xA;                circle.color-3 {&#xA;                    fill:green;&#xA;                }&#xA;                circle.color-4 {&#xA;                    fill:blue;&#xA;                }&#xA;                circle.color-5 {&#xA;                    fill:black;&#xA;                }&#xA;                circle.color-6 {&#xA;                    fill:white;&#xA;                }&#xA;                &#xA;                circle.pincolor-1 {&#xA;                    /* Columns correct */&#xA;                    fill: black;&#xA;                }&#xA;                circle.pincolor-2 {&#xA;                    /* Other colours correct */&#xA;                    fill: white;&#xA;                }&#xA;                &#xA;            "/>
+          </valueOf>
+         </sequence>
+        </elem>
+        <elem line="96" name="svg:g" namespaces="xs=http://www.w3.org/2001/XMLSchema svg=http://www.w3.org/2000/svg pcm=http://www.masereeuw.nl/xslt/2.0/functions">
+         <sequence>
+          <elem name="svg:rect">
+           <sequence>
+            <att name="width">
+             <gVarRef name="Q{http://saxon.sf.net/generated-variable}gg2075807623" bSlot="9"/>
+            </att>
+            <att name="height">
+             <convert from="xs:integer" to="xs:string">
+              <varRef name="svgBoardHeight" slot="0"/>
+             </convert>
+            </att>
+            <att name="x">
+             <str val="0"/>
+            </att>
+            <att name="y">
+             <str val="0"/>
+            </att>
+            <att name="fill">
+             <str val="#552200"/>
+            </att>
+           </sequence>
+          </elem>
+          <applyT line="98" mode="Q{}svg" flags="i" bSlot="10">
+           <axis role="select" name="child" nodeTest="node()" jsTest="return true;"/>
+          </applyT>
+         </sequence>
+        </elem>
+       </sequence>
+      </elem>
+      <let line="102" var="lastmove" as="element(Q{}move)" slot="1" eval="7">
+       <check card="1" diag="3|0|XTTE0570|lastmove">
+        <filter flags="b">
+         <axis name="child" nodeTest="element(Q{}move)" jsTest="var q=SaxonJS.U.nameOfNode(item); return item.nodeType==1 &amp;&amp; q.uri==''&amp;&amp;q.local=='move';"/>
+         <fn name="empty">
+          <axis name="following-sibling" nodeTest="element(Q{}move)" jsTest="var q=SaxonJS.U.nameOfNode(item); return item.nodeType==1 &amp;&amp; q.uri==''&amp;&amp;q.local=='move';"/>
+         </fn>
+        </filter>
+       </check>
+       <choose line="103">
+        <vc op="eq" onEmpty="0" comp="CCC">
+         <data>
+          <slash simple="1">
+           <varRef name="lastmove" slot="1"/>
+           <axis name="attribute" nodeTest="attribute(Q{}id)" jsTest="return item.name=='id'"/>
+          </slash>
+         </data>
+         <str val="proposal"/>
+        </vc>
+        <sequence line="114">
+         <elem name="table" namespaces="xs=http://www.w3.org/2001/XMLSchema svg=http://www.w3.org/2000/svg pcm=http://www.masereeuw.nl/xslt/2.0/functions">
+          <sequence>
+           <elem name="thead">
+            <elem name="tr">
+             <sequence>
+              <elem name="th">
+               <sequence>
+                <valueOf>
+                 <str val="# matching"/>
+                </valueOf>
+                <elem name="br">
+                 <empty/>
+                </elem>
+                <valueOf flags="S">
+                 <str val="colums"/>
+                </valueOf>
+               </sequence>
+              </elem>
+              <elem line="115" name="th">
+               <sequence>
+                <valueOf>
+                 <str val="# matching"/>
+                </valueOf>
+                <elem name="br">
+                 <empty/>
+                </elem>
+                <valueOf flags="S">
+                 <str val="colours"/>
+                </valueOf>
+               </sequence>
+              </elem>
+             </sequence>
+            </elem>
+           </elem>
+           <elem line="121" name="tbody">
+            <elem name="tr">
+             <sequence>
+              <elem name="td" namespaces="xs=http://www.w3.org/2001/XMLSchema svg=http://www.w3.org/2000/svg pcm=http://www.masereeuw.nl/xslt/2.0/functions">
+               <callT name="scoreInput" bSlot="11">
+                <withParam name="inputName" flags="c" as="xs:string">
+                 <str val="identicalColumnCount"/>
+                </withParam>
+                <withParam name="inputValue" flags="c" as="document-node()">
+                 <cvUntyped line="123" to="xs:integer">
+                  <data>
+                   <doc base="file:/home/pieter/saxonjs-experimenten/mastermind/mastermind-webinterface-svg.xslt" flags="t" validation="preserve">
+                    <valueOf>
+                     <convert from="xs:integer" to="xs:string">
+                      <choose line="106">
+                       <fn name="not">
+                        <fn name="normalize-space">
+                         <cvUntyped to="xs:string">
+                          <data>
+                           <slash simple="1">
+                            <varRef name="lastmove" slot="1"/>
+                            <axis name="attribute" nodeTest="attribute(Q{}identicalColumnCount)" jsTest="return item.name=='identicalColumnCount'"/>
+                           </slash>
+                          </data>
+                         </cvUntyped>
+                        </fn>
+                       </fn>
+                       <int val="0"/>
+                       <true/>
+                       <check card="1" diag="3|0|XTTE0570|identicalColumnCount">
+                        <cast as="xs:integer" emptiable="1">
+                         <data>
+                          <slash simple="1">
+                           <varRef name="lastmove" slot="1"/>
+                           <axis name="attribute" nodeTest="attribute(Q{}identicalColumnCount)" jsTest="return item.name=='identicalColumnCount'"/>
+                          </slash>
+                         </data>
+                        </cast>
+                       </check>
+                      </choose>
+                     </convert>
+                    </valueOf>
+                   </doc>
+                  </data>
+                 </cvUntyped>
+                </withParam>
+               </callT>
+              </elem>
+              <elem line="127" name="td" namespaces="xs=http://www.w3.org/2001/XMLSchema svg=http://www.w3.org/2000/svg pcm=http://www.masereeuw.nl/xslt/2.0/functions">
+               <callT name="scoreInput" bSlot="12">
+                <withParam name="inputName" flags="c" as="xs:string">
+                 <str val="identicalColorCount"/>
+                </withParam>
+                <withParam name="inputValue" flags="c" as="document-node()">
+                 <cvUntyped line="129" to="xs:integer">
+                  <data>
+                   <doc base="file:/home/pieter/saxonjs-experimenten/mastermind/mastermind-webinterface-svg.xslt" flags="t" validation="preserve">
+                    <valueOf>
+                     <convert from="xs:integer" to="xs:string">
+                      <choose line="110">
+                       <fn name="not">
+                        <fn name="normalize-space">
+                         <cvUntyped to="xs:string">
+                          <data>
+                           <slash simple="1">
+                            <varRef name="lastmove" slot="1"/>
+                            <axis name="attribute" nodeTest="attribute(Q{}identicalColorCount)" jsTest="return item.name=='identicalColorCount'"/>
+                           </slash>
+                          </data>
+                         </cvUntyped>
+                        </fn>
+                       </fn>
+                       <int val="0"/>
+                       <true/>
+                       <check card="1" diag="3|0|XTTE0570|identicalColorCount">
+                        <cast as="xs:integer" emptiable="1">
+                         <data>
+                          <slash simple="1">
+                           <varRef name="lastmove" slot="1"/>
+                           <axis name="attribute" nodeTest="attribute(Q{}identicalColorCount)" jsTest="return item.name=='identicalColorCount'"/>
+                          </slash>
+                         </data>
+                        </cast>
+                       </check>
+                      </choose>
+                     </convert>
+                    </valueOf>
+                   </doc>
+                  </data>
+                 </cvUntyped>
+                </withParam>
+               </callT>
+              </elem>
+             </sequence>
+            </elem>
+           </elem>
+          </sequence>
+         </elem>
+         <elem line="135" name="p" namespaces="xs=http://www.w3.org/2001/XMLSchema svg=http://www.w3.org/2000/svg pcm=http://www.masereeuw.nl/xslt/2.0/functions">
+          <elem name="input">
+           <sequence>
+            <att name="type">
+             <str val="submit"/>
+            </att>
+            <att name="id">
+             <str val="next-move-button"/>
+            </att>
+            <att name="value">
+             <str val="Next move"/>
+            </att>
+            <att name="style">
+             <str val="height: 2em;"/>
+            </att>
+           </sequence>
+          </elem>
+         </elem>
+        </sequence>
+       </choose>
+      </let>
+     </sequence>
+    </let>
+   </templateRule>
+  </mode>
+ </co>
+ <co id="33" binds="34">
+  <template name="Q{}scoreInput" flags="os" line="71" module="file:/home/pieter/saxonjs-experimenten/mastermind/mastermind-webinterface.xslt" slots="2">
+   <sequence role="body" vn="20" baseUri="file:/home/pieter/saxonjs-experimenten/mastermind/mastermind-webinterface.xslt" ns="xsl=http://www.w3.org/1999/XSL/Transform ixsl=http://saxonica.com/ns/interactiveXSLT xs=http://www.w3.org/2001/XMLSchema pcm=http://www.masereeuw.nl/xslt/2.0/functions svg=http://www.w3.org/2000/svg" line="72">
+    <param name="inputName" slot="0" flags="r" as="xs:string">
+     <treat role="conversion" as="xs:string" jsTest="return SaxonJS.U.Atomic.string.matches(item);" diag="8|0|XTTE0590|inputName">
+      <check card="1" diag="8|0|XTTE0590|inputName">
+       <cvUntyped to="xs:string">
+        <data>
+         <supplied slot="0"/>
+        </data>
+       </cvUntyped>
+      </check>
+     </treat>
+    </param>
+    <param line="73" name="inputValue" slot="1" flags="r" as="xs:integer">
+     <treat role="conversion" as="xs:integer" jsTest="return SaxonJS.U.Atomic.integer.matches(item);" diag="8|0|XTTE0590|inputValue">
+      <check card="1" diag="8|0|XTTE0590|inputValue">
+       <cvUntyped to="xs:integer">
+        <data>
+         <supplied slot="1"/>
+        </data>
+       </cvUntyped>
+      </check>
+     </treat>
+    </param>
+    <elem line="74" name="select" namespaces="xs=http://www.w3.org/2001/XMLSchema svg=http://www.w3.org/2000/svg pcm=http://www.masereeuw.nl/xslt/2.0/functions">
+     <sequence>
+      <att name="name">
+       <varRef name="inputName" slot="0"/>
+      </att>
+      <att name="class">
+       <str val="score"/>
+      </att>
+      <forEach line="75">
+       <gVarRef name="Q{http://saxon.sf.net/generated-variable}gg216684181" bSlot="0"/>
+       <elem line="76" name="option" namespaces="xs=http://www.w3.org/2001/XMLSchema svg=http://www.w3.org/2000/svg pcm=http://www.masereeuw.nl/xslt/2.0/functions">
+        <sequence>
+         <att name="value">
+          <convert from="xs:integer" to="xs:string">
+           <dot type="xs:integer"/>
+          </convert>
+         </att>
+         <choose line="77">
+          <vc op="eq" onEmpty="0" comp="GAC|http://www.w3.org/2005/xpath-functions/collation/codepoint">
+           <dot type="xs:integer"/>
+           <varRef name="inputValue" slot="1"/>
+          </vc>
+          <att name="selected">
+           <str val="selected"/>
+          </att>
+         </choose>
+         <valueOf line="80">
+          <convert from="xs:integer" to="xs:string">
+           <dot type="xs:integer"/>
+          </convert>
+         </valueOf>
+        </sequence>
+       </elem>
+      </forEach>
+     </sequence>
+    </elem>
+   </sequence>
+  </template>
+ </co>
+ <co id="12" vis="PUBLIC" binds="">
+  <globalParam name="Q{}maxColumns" type="xs:integer" line="0" visibility="PUBLIC" jsAcceptor="return SaxonJS.U.Atomic.integer.cast(val);" jsCardCheck="function c(n) {return n==1;};">
+   <int val="4"/>
+  </globalParam>
+ </co>
+ <co id="35" binds="35">
+  <mode name="Q{}copy-moves" onNo="TC" flags="W" patternSlots="0">
+   <templateRule prec="2" prio="-0.5" seq="1" rank="0" minImp="0" slots="0" flags="os" line="290" module="file:/home/pieter/saxonjs-experimenten/mastermind/mastermind-webinterface.xslt">
+    <p.nodeTest role="match" test="attribute()" jsTest="return SaxonJS.U.isAttr(item)"/>
+    <copy role="action" vn="20" baseUri="file:/home/pieter/saxonjs-experimenten/mastermind/mastermind-webinterface.xslt" ns="xsl=http://www.w3.org/1999/XSL/Transform ixsl=http://saxonica.com/ns/interactiveXSLT xs=http://www.w3.org/2001/XMLSchema pcm=http://www.masereeuw.nl/xslt/2.0/functions svg=http://www.w3.org/2000/svg" line="291" flags="cin">
+     <applyT role="content" mode="Q{}copy-moves" bSlot="0">
+      <sequence role="select">
+       <axis name="attribute" nodeTest="attribute()" jsTest="return SaxonJS.U.isAttr(item)"/>
+       <axis name="child" nodeTest="( element() | text() | comment() | processing-instruction() )" jsTest="return SaxonJS.U.isNode(item) &amp;&amp; (item.nodeType==1 || item.nodeType==3 || item.nodeType==7 || item.nodeType==8);"/>
+      </sequence>
+     </applyT>
+    </copy>
+   </templateRule>
+   <templateRule prec="2" prio="0.5" seq="0" rank="1" minImp="0" slots="0" flags="os" line="288" module="file:/home/pieter/saxonjs-experimenten/mastermind/mastermind-webinterface.xslt">
+    <p.withUpper role="match" axis="parent" upFirst="true">
+     <p.withPredicate>
+      <p.nodeTest test="attribute(Q{}id)" jsTest="return SaxonJS.U.isAttr(item) &amp;&amp; item.name=='id'"/>
+      <vc vn="20" baseUri="file:/home/pieter/saxonjs-experimenten/mastermind/mastermind-webinterface.xslt" ns="xsl=http://www.w3.org/1999/XSL/Transform ixsl=http://saxonica.com/ns/interactiveXSLT xs=http://www.w3.org/2001/XMLSchema pcm=http://www.masereeuw.nl/xslt/2.0/functions svg=http://www.w3.org/2000/svg" line="288" op="eq" comp="CCC">
+       <data>
+        <dot type="attribute(Q{}id)"/>
+       </data>
+       <str val="proposal"/>
+      </vc>
+     </p.withPredicate>
+     <p.nodeTest test="element(Q{}move)" jsTest="var q=SaxonJS.U.nameOfNode(item); return SaxonJS.U.isNode(item) &amp;&amp; item.nodeType==1 &amp;&amp; q.uri==''&amp;&amp;q.local=='move';"/>
+    </p.withUpper>
+    <empty role="action"/>
+   </templateRule>
+   <templateRule prec="2" prio="-0.5" seq="1" rank="0" minImp="0" slots="0" flags="os" line="290" module="file:/home/pieter/saxonjs-experimenten/mastermind/mastermind-webinterface.xslt">
+    <p.nodeTest role="match" test="( element() | text() | comment() | processing-instruction() )" jsTest="return SaxonJS.U.isNode(item) &amp;&amp; (item.nodeType==1 || item.nodeType==3 || item.nodeType==7 || item.nodeType==8);"/>
+    <copy role="action" vn="20" baseUri="file:/home/pieter/saxonjs-experimenten/mastermind/mastermind-webinterface.xslt" ns="xsl=http://www.w3.org/1999/XSL/Transform ixsl=http://saxonica.com/ns/interactiveXSLT xs=http://www.w3.org/2001/XMLSchema pcm=http://www.masereeuw.nl/xslt/2.0/functions svg=http://www.w3.org/2000/svg" line="291" flags="cin">
+     <applyT role="content" mode="Q{}copy-moves" bSlot="0">
+      <sequence role="select">
+       <axis name="attribute" nodeTest="attribute()" jsTest="return SaxonJS.U.isAttr(item)"/>
+       <axis name="child" nodeTest="( element() | text() | comment() | processing-instruction() )" jsTest="return SaxonJS.U.isNode(item) &amp;&amp; (item.nodeType==1 || item.nodeType==3 || item.nodeType==7 || item.nodeType==8);"/>
+      </sequence>
+     </applyT>
+    </copy>
+   </templateRule>
+  </mode>
+ </co>
+ <co id="36" vis="PUBLIC" binds="">
+  <globalParam name="Q{}maxColors" type="xs:integer" line="0" visibility="PUBLIC" jsAcceptor="return SaxonJS.U.Atomic.integer.cast(val);" jsCardCheck="function c(n) {return n==1;};">
+   <int val="6"/>
+  </globalParam>
+ </co>
+ <co id="27" binds="12">
+  <globalVariable name="Q{http://saxon.sf.net/generated-variable}gg540821093" type="xs:integer" line="144" module="file:/home/pieter/saxonjs-experimenten/mastermind/mastermind-webinterface-svg.xslt" visibility="PRIVATE" jsAcceptor="return SaxonJS.U.Atomic.integer.cast(val);" jsCardCheck="function c(n) {return n==1;};">
+   <arith vn="20" baseUri="file:/home/pieter/saxonjs-experimenten/mastermind/mastermind-webinterface-svg.xslt" ns="xsl=http://www.w3.org/1999/XSL/Transform xs=http://www.w3.org/2001/XMLSchema pcm=http://www.masereeuw.nl/xslt/2.0/functions svg=http://www.w3.org/2000/svg" line="144" op="*" calc="i*i">
+    <int val="125"/>
+    <arith op="+" calc="i+i">
+     <gVarRef name="Q{}maxColumns" bSlot="0"/>
+     <int val="1"/>
+    </arith>
+   </arith>
+  </globalVariable>
+ </co>
+ <co id="31" binds="11">
+  <globalVariable name="Q{http://saxon.sf.net/generated-variable}gg330548954" type="xs:string" line="63" module="file:/home/pieter/saxonjs-experimenten/mastermind/mastermind-webinterface-svg.xslt" visibility="PRIVATE" jsAcceptor="return SaxonJS.U.Atomic.string.cast(val);" jsCardCheck="function c(n) {return n==1;};">
+   <convert vn="20" baseUri="file:/home/pieter/saxonjs-experimenten/mastermind/mastermind-webinterface-svg.xslt" ns="xsl=http://www.w3.org/1999/XSL/Transform xs=http://www.w3.org/2001/XMLSchema pcm=http://www.masereeuw.nl/xslt/2.0/functions svg=http://www.w3.org/2000/svg" line="63" from="xs:integer" to="xs:string">
+    <gVarRef name="Q{}svgBoardWidth" bSlot="0"/>
+   </convert>
+  </globalVariable>
+ </co>
+ <co id="34" binds="12">
+  <globalVariable name="Q{http://saxon.sf.net/generated-variable}gg216684181" type="xs:integer*" line="75" module="file:/home/pieter/saxonjs-experimenten/mastermind/mastermind-webinterface.xslt" visibility="PRIVATE" jsAcceptor="return SaxonJS.U.Atomic.integer.cast(val);" jsCardCheck="function c() {return true;};">
+   <to vn="20" baseUri="file:/home/pieter/saxonjs-experimenten/mastermind/mastermind-webinterface.xslt" ns="xsl=http://www.w3.org/1999/XSL/Transform ixsl=http://saxonica.com/ns/interactiveXSLT xs=http://www.w3.org/2001/XMLSchema pcm=http://www.masereeuw.nl/xslt/2.0/functions svg=http://www.w3.org/2000/svg" line="75">
+    <int val="0"/>
+    <gVarRef name="Q{}maxColumns" bSlot="0"/>
+   </to>
+  </globalVariable>
+ </co>
+ <co id="10" binds="21">
+  <globalVariable name="Q{http://saxon.sf.net/generated-variable}gg537279712" type="xs:string" line="216" module="file:/home/pieter/saxonjs-experimenten/mastermind/mastermind-webinterface-svg.xslt" visibility="PRIVATE" jsAcceptor="return SaxonJS.U.Atomic.string.cast(val);" jsCardCheck="function c(n) {return n==1;};">
+   <convert vn="20" baseUri="file:/home/pieter/saxonjs-experimenten/mastermind/mastermind-webinterface-svg.xslt" ns="xsl=http://www.w3.org/1999/XSL/Transform xs=http://www.w3.org/2001/XMLSchema pcm=http://www.masereeuw.nl/xslt/2.0/functions svg=http://www.w3.org/2000/svg" line="216" from="xs:integer" to="xs:string">
+    <gVarRef name="Q{}svgPinRadius" bSlot="0"/>
+   </convert>
+  </globalVariable>
+ </co>
+ <co id="20" binds="14 37 37">
+  <function name="Q{http://www.masereeuw.nl/xslt/2.0/functions}countColorsAtOtherColumns" line="182" module="file:/home/pieter/saxonjs-experimenten/mastermind/mastermind.xslt" eval="7" flags="pU" as="xs:integer" slots="2">
+   <arg name="newSeq" as="xs:integer+"/>
+   <arg name="oldSeq" as="xs:integer+"/>
+   <tailCallLoop role="body" vn="20" baseUri="file:/home/pieter/saxonjs-experimenten/mastermind/mastermind.xslt" ns="xsl=http://www.w3.org/1999/XSL/Transform xs=http://www.w3.org/2001/XMLSchema pcm=http://www.masereeuw.nl/xslt/2.0/functions" line="187">
+    <ufCall name="Q{http://www.masereeuw.nl/xslt/2.0/functions}auxCountColorsAtOtherColumns" tailCall="foreign" bSlot="0" eval="8 8 0">
+     <ufCall name="Q{http://www.masereeuw.nl/xslt/2.0/functions}zeroOutColumsWithSameColors" tailCall="false" bSlot="1" eval="4 4">
+      <varRef name="newSeq" slot="0"/>
+      <varRef name="oldSeq" slot="1"/>
+     </ufCall>
+     <ufCall name="Q{http://www.masereeuw.nl/xslt/2.0/functions}zeroOutColumsWithSameColors" tailCall="false" bSlot="2" eval="4 4">
+      <varRef name="oldSeq" slot="1"/>
+      <varRef name="newSeq" slot="0"/>
+     </ufCall>
+     <int val="1"/>
+    </ufCall>
+   </tailCallLoop>
+  </function>
+ </co>
+ <co id="38" binds="36">
+  <function name="Q{http://www.masereeuw.nl/xslt/2.0/functions}getNextColor" line="21" module="file:/home/pieter/saxonjs-experimenten/mastermind/mastermind.xslt" eval="7" flags="pU" as="xs:integer" slots="4">
+   <arg name="color" as="xs:integer"/>
+   <arg name="stopAtColor" as="xs:integer"/>
+   <let role="body" vn="20" baseUri="file:/home/pieter/saxonjs-experimenten/mastermind/mastermind.xslt" ns="xsl=http://www.w3.org/1999/XSL/Transform xs=http://www.w3.org/2001/XMLSchema pcm=http://www.masereeuw.nl/xslt/2.0/functions" line="25" var="next1" as="xs:integer" slot="2" eval="7">
+    <arith op="+" calc="i+i">
+     <varRef name="color" slot="0"/>
+     <int val="1"/>
+    </arith>
+    <let line="26" var="next2" as="xs:integer" slot="3" eval="7">
+     <choose>
+      <vc op="gt" onEmpty="0" comp="CAVC">
+       <varRef name="next1" slot="2"/>
+       <gVarRef name="Q{}maxColors" bSlot="0"/>
+      </vc>
+      <int val="1"/>
+      <true/>
+      <varRef name="next1" slot="2"/>
+     </choose>
+     <choose line="27">
+      <vc op="eq" onEmpty="0" comp="CAVC">
+       <varRef name="next2" slot="3"/>
+       <varRef name="stopAtColor" slot="1"/>
+      </vc>
+      <int val="0"/>
+      <true/>
+      <varRef name="next2" slot="3"/>
+     </choose>
+    </let>
+   </let>
+  </function>
+ </co>
+ <co id="26" binds="11">
+  <globalVariable name="Q{http://saxon.sf.net/generated-variable}gg641414388" type="xs:string" line="150" module="file:/home/pieter/saxonjs-experimenten/mastermind/mastermind-webinterface-svg.xslt" visibility="PRIVATE" jsAcceptor="return SaxonJS.U.Atomic.string.cast(val);" jsCardCheck="function c(n) {return n==1;};">
+   <convert vn="20" baseUri="file:/home/pieter/saxonjs-experimenten/mastermind/mastermind-webinterface-svg.xslt" ns="xsl=http://www.w3.org/1999/XSL/Transform xs=http://www.w3.org/2001/XMLSchema pcm=http://www.masereeuw.nl/xslt/2.0/functions svg=http://www.w3.org/2000/svg" line="150" from="xs:integer" to="xs:string">
+    <gVarRef name="Q{}svgBoardWidth" bSlot="0"/>
+   </convert>
+  </globalVariable>
+ </co>
+ <co id="1" binds="15 15">
+  <function name="Q{http://www.masereeuw.nl/xslt/2.0/functions}intFromWidget" line="40" module="file:/home/pieter/saxonjs-experimenten/mastermind/mastermind-webinterface.xslt" eval="7" flags="pU" as="xs:integer" slots="2">
+   <arg name="element" as="element()"/>
+   <let role="body" vn="20" baseUri="file:/home/pieter/saxonjs-experimenten/mastermind/mastermind-webinterface.xslt" ns="xsl=http://www.w3.org/1999/XSL/Transform ixsl=http://saxonica.com/ns/interactiveXSLT xs=http://www.w3.org/2001/XMLSchema pcm=http://www.masereeuw.nl/xslt/2.0/functions svg=http://www.w3.org/2000/svg" line="42" var="val" as="xs:string" slot="1" eval="7">
+    <choose line="44">
+     <fn name="exists">
+      <slash simple="1">
+       <varRef name="element" slot="0"/>
+       <axis name="self" nodeTest="*:input" jsTest="var q=SaxonJS.U.nameOfNode(item); return SaxonJS.U.isNode(item) &amp;&amp; item.nodeType==1&amp;&amp;q.local == 'input'"/>
+      </slash>
+     </fn>
+     <cvUntyped line="45" to="xs:string">
+      <cast as="xs:untypedAtomic" emptiable="0">
+       <fn name="string-join">
+        <convert from="xs:anyAtomicType" to="xs:string">
+         <data>
+          <ufCall name="Q{http://www.masereeuw.nl/xslt/2.0/functions}get" tailCall="false" bSlot="0" eval="6 0">
+           <varRef name="element" slot="0"/>
+           <str val="value"/>
+          </ufCall>
+         </data>
+        </convert>
+        <str val=" "/>
+       </fn>
+      </cast>
+     </cvUntyped>
+     <fn line="47" name="exists">
+      <slash simple="1">
+       <varRef name="element" slot="0"/>
+       <axis name="self" nodeTest="*:select" jsTest="var q=SaxonJS.U.nameOfNode(item); return SaxonJS.U.isNode(item) &amp;&amp; item.nodeType==1&amp;&amp;q.local == 'select'"/>
+      </slash>
+     </fn>
+     <cvUntyped line="48" to="xs:string">
+      <cast as="xs:untypedAtomic" emptiable="0">
+       <fn name="string-join">
+        <convert from="xs:anyAtomicType" to="xs:string">
+         <data>
+          <ufCall name="Q{http://www.masereeuw.nl/xslt/2.0/functions}get" tailCall="false" bSlot="1" eval="6 0">
+           <varRef name="element" slot="0"/>
+           <str val="value"/>
+          </ufCall>
+         </data>
+        </convert>
+        <str val=" "/>
+       </fn>
+      </cast>
+     </cvUntyped>
+     <true/>
+     <str val="-666"/>
+    </choose>
+    <choose line="53">
+     <fn name="not">
+      <fn name="normalize-space">
+       <varRef name="val" slot="1"/>
+      </fn>
+     </fn>
+     <int val="0"/>
+     <true/>
+     <cast as="xs:integer" emptiable="0">
+      <varRef name="val" slot="1"/>
+     </cast>
+    </choose>
+   </let>
+  </function>
+ </co>
+ <co id="39" binds="">
+  <mode onNo="TC" flags="dW" patternSlots="0">
+   <templateRule prec="1" prio="0.0" seq="0" rank="0" minImp="1" slots="0" flags="os" line="223" module="file:/home/pieter/saxonjs-experimenten/mastermind/mastermind.xslt">
+    <p.nodeTest role="match" test="element(Q{}REPLACE-ME-WITH-A-ROOT-TEMPLATE-FOR-TESTING-PURPOSES)" jsTest="var q=SaxonJS.U.nameOfNode(item); return SaxonJS.U.isNode(item) &amp;&amp; item.nodeType==1 &amp;&amp; q.uri==''&amp;&amp;q.local=='REPLACE-ME-WITH-A-ROOT-TEMPLATE-FOR-TESTING-PURPOSES';"/>
+    <empty role="action"/>
+   </templateRule>
+  </mode>
+ </co>
+ <co id="7" binds="12">
+  <globalVariable name="Q{http://saxon.sf.net/generated-variable}gg157845009" type="xs:decimal" line="214" module="file:/home/pieter/saxonjs-experimenten/mastermind/mastermind-webinterface-svg.xslt" visibility="PRIVATE" jsAcceptor="return SaxonJS.U.Atomic.decimal.cast(val);" jsCardCheck="function c(n) {return n==1;};">
+   <arith vn="20" baseUri="file:/home/pieter/saxonjs-experimenten/mastermind/mastermind-webinterface-svg.xslt" ns="xsl=http://www.w3.org/1999/XSL/Transform xs=http://www.w3.org/2001/XMLSchema pcm=http://www.masereeuw.nl/xslt/2.0/functions svg=http://www.w3.org/2000/svg" line="214" op="div" calc="i/i">
+    <gVarRef name="Q{}maxColumns" bSlot="0"/>
+    <int val="2"/>
+   </arith>
+  </globalVariable>
+ </co>
+ <co id="40" binds="">
+  <globalVariable name="Q{}color-image-alt-prefix" type="xs:string" line="13" module="file:/home/pieter/saxonjs-experimenten/mastermind/mastermind-webinterface-html.xslt" visibility="PRIVATE" jsAcceptor="return SaxonJS.U.Atomic.string.cast(val);" jsCardCheck="function c(n) {return n==1;};">
+   <str val="color #"/>
+  </globalVariable>
+ </co>
+ <co id="30" binds="">
+  <globalVariable name="Q{}svgPointsToEmFactor" type="xs:float" line="25" module="file:/home/pieter/saxonjs-experimenten/mastermind/mastermind-webinterface-svg.xslt" visibility="PRIVATE" jsAcceptor="return SaxonJS.U.Atomic.float.cast(val);" jsCardCheck="function c(n) {return n==1;};">
+   <atomic val="0.03" type="xs:float"/>
+  </globalVariable>
+ </co>
+ <co id="28" binds="6">
+  <template name="Q{}paintScoreBox" flags="os" line="179" module="file:/home/pieter/saxonjs-experimenten/mastermind/mastermind-webinterface-svg.xslt" slots="6">
+   <sequence role="body" vn="20" baseUri="file:/home/pieter/saxonjs-experimenten/mastermind/mastermind-webinterface-svg.xslt" ns="xsl=http://www.w3.org/1999/XSL/Transform xs=http://www.w3.org/2001/XMLSchema pcm=http://www.masereeuw.nl/xslt/2.0/functions svg=http://www.w3.org/2000/svg" line="180">
+    <param name="baseX" slot="0" flags="r" as="xs:integer">
+     <treat role="conversion" as="xs:integer" jsTest="return SaxonJS.U.Atomic.integer.matches(item);" diag="8|0|XTTE0590|baseX">
+      <check card="1" diag="8|0|XTTE0590|baseX">
+       <cvUntyped to="xs:integer">
+        <data>
+         <supplied slot="0"/>
+        </data>
+       </cvUntyped>
+      </check>
+     </treat>
+    </param>
+    <param line="181" name="baseY" slot="1" flags="r" as="xs:integer">
+     <treat role="conversion" as="xs:integer" jsTest="return SaxonJS.U.Atomic.integer.matches(item);" diag="8|0|XTTE0590|baseY">
+      <check card="1" diag="8|0|XTTE0590|baseY">
+       <cvUntyped to="xs:integer">
+        <data>
+         <supplied slot="1"/>
+        </data>
+       </cvUntyped>
+      </check>
+     </treat>
+    </param>
+    <let line="187" var="identicalColorCount" as="xs:integer" slot="2" eval="7">
+     <choose>
+      <data>
+       <slash simple="1">
+        <treat as="node()" jsTest="return SaxonJS.U.isNode(item);" diag="14|2|XPTY0020|">
+         <dot flags="a"/>
+        </treat>
+        <axis name="attribute" nodeTest="attribute(Q{}identicalColorCount)" jsTest="return item.name=='identicalColorCount'"/>
+       </slash>
+      </data>
+      <check card="1" diag="3|0|XTTE0570|identicalColorCount">
+       <cvUntyped to="xs:integer">
+        <data>
+         <slash simple="1">
+          <treat as="node()" jsTest="return SaxonJS.U.isNode(item);" diag="14|2|XPTY0020|">
+           <dot flags="a"/>
+          </treat>
+          <axis name="attribute" nodeTest="attribute(Q{}identicalColorCount)" jsTest="return item.name=='identicalColorCount'"/>
+         </slash>
+        </data>
+       </cvUntyped>
+      </check>
+      <true/>
+      <int val="0"/>
+     </choose>
+     <let line="189" var="scorePins" as="xs:integer*" slot="3" eval="3">
+      <sequence>
+       <for var="i" as="xs:integer" slot="4">
+        <to role="in">
+         <int val="1"/>
+         <choose line="186">
+          <data>
+           <slash simple="1">
+            <treat as="node()" jsTest="return SaxonJS.U.isNode(item);" diag="14|2|XPTY0020|">
+             <dot flags="a"/>
+            </treat>
+            <axis name="attribute" nodeTest="attribute(Q{}identicalColumnCount)" jsTest="return item.name=='identicalColumnCount'"/>
+           </slash>
+          </data>
+          <check card="1" diag="3|0|XTTE0570|identicalColumnCount">
+           <cvUntyped to="xs:integer">
+            <data>
+             <slash simple="1">
+              <treat as="node()" jsTest="return SaxonJS.U.isNode(item);" diag="14|2|XPTY0020|">
+               <dot flags="a"/>
+              </treat>
+              <axis name="attribute" nodeTest="attribute(Q{}identicalColumnCount)" jsTest="return item.name=='identicalColumnCount'"/>
+             </slash>
+            </data>
+           </cvUntyped>
+          </check>
+          <true/>
+          <int val="0"/>
+         </choose>
+        </to>
+        <int role="return" val="1"/>
+       </for>
+       <for var="i" as="xs:integer" slot="5">
+        <to role="in">
+         <int val="1"/>
+         <varRef name="identicalColorCount" slot="2"/>
+        </to>
+        <int role="return" val="2"/>
+       </for>
+      </sequence>
+      <callT line="191" name="placeScorePin" bSlot="0">
+       <withParam name="scorePins" flags="c" as="xs:integer*">
+        <varRef line="192" name="scorePins" slot="3"/>
+       </withParam>
+       <withParam name="whichPin" flags="c" as="xs:integer">
+        <int val="1"/>
+       </withParam>
+       <withParam name="baseX" flags="c" as="xs:integer">
+        <varRef line="194" name="baseX" slot="0"/>
+       </withParam>
+       <withParam name="baseY" flags="c" as="xs:integer">
+        <varRef line="195" name="baseY" slot="1"/>
+       </withParam>
+      </callT>
+     </let>
+    </let>
+   </sequence>
+  </template>
+ </co>
+ <co id="41" binds="35 42">
+  <template name="Q{}injectNewMove" flags="os" line="276" module="file:/home/pieter/saxonjs-experimenten/mastermind/mastermind-webinterface.xslt" slots="2">
+   <sequence role="body" vn="20" baseUri="file:/home/pieter/saxonjs-experimenten/mastermind/mastermind-webinterface.xslt" ns="xsl=http://www.w3.org/1999/XSL/Transform ixsl=http://saxonica.com/ns/interactiveXSLT xs=http://www.w3.org/2001/XMLSchema pcm=http://www.masereeuw.nl/xslt/2.0/functions svg=http://www.w3.org/2000/svg" line="277">
+    <param name="moves" slot="0" flags="r" as="element(Q{}moves)">
+     <treat role="conversion" as="element(Q{}moves)" jsTest="var q=SaxonJS.U.nameOfNode(item); return SaxonJS.U.isNode(item) &amp;&amp; item.nodeType==1 &amp;&amp; q.uri==''&amp;&amp;q.local=='moves';" diag="8|0|XTTE0590|moves">
+      <check card="1" diag="8|0|XTTE0590|moves">
+       <supplied slot="0"/>
+      </check>
+     </treat>
+    </param>
+    <param line="278" name="newColors" slot="1" flags="r" as="xs:integer*">
+     <treat role="conversion" as="xs:integer" jsTest="return SaxonJS.U.Atomic.integer.matches(item);" diag="8|0|XTTE0590|newColors">
+      <cvUntyped to="xs:integer">
+       <data>
+        <supplied slot="1"/>
+       </data>
+      </cvUntyped>
+     </treat>
+    </param>
+    <forEach line="279">
+     <varRef name="moves" slot="0"/>
+     <copy line="281" flags="cin">
+      <sequence role="content">
+       <applyT mode="Q{}copy-moves" bSlot="0">
+        <sequence role="select">
+         <axis name="attribute" nodeTest="attribute()" jsTest="return SaxonJS.U.isAttr(item)"/>
+         <axis name="child" nodeTest="( element() | text() | comment() | processing-instruction() )" jsTest="return SaxonJS.U.isNode(item) &amp;&amp; (item.nodeType==1 || item.nodeType==3 || item.nodeType==7 || item.nodeType==8);"/>
+        </sequence>
+       </applyT>
+       <callT line="282" name="doNewMoves" bSlot="1">
+        <withParam name="newColors" flags="c" as="xs:integer*">
+         <varRef name="newColors" slot="1"/>
+        </withParam>
+       </callT>
+      </sequence>
+     </copy>
+    </forEach>
+   </sequence>
+  </template>
+ </co>
+ <co id="43" binds="">
+  <globalVariable name="Q{}svgRowHeight" type="xs:integer" line="13" module="file:/home/pieter/saxonjs-experimenten/mastermind/mastermind-webinterface-svg.xslt" visibility="PRIVATE" jsAcceptor="return SaxonJS.U.Atomic.integer.cast(val);" jsCardCheck="function c(n) {return n==1;};">
+   <int val="125"/>
+  </globalVariable>
+ </co>
+ <co id="19" binds="">
+  <function name="Q{http://www.masereeuw.nl/xslt/2.0/functions}countColorsAtSameColumns" line="174" module="file:/home/pieter/saxonjs-experimenten/mastermind/mastermind.xslt" eval="8" flags="pU" as="xs:integer" slots="3">
+   <arg name="newSeq" as="xs:integer+"/>
+   <arg name="oldSeq" as="xs:integer+"/>
+   <fn role="body" vn="20" baseUri="file:/home/pieter/saxonjs-experimenten/mastermind/mastermind.xslt" ns="xsl=http://www.w3.org/1999/XSL/Transform xs=http://www.w3.org/2001/XMLSchema pcm=http://www.masereeuw.nl/xslt/2.0/functions" line="179" name="sum">
+    <for var="i" as="xs:integer" slot="2">
+     <to role="in">
+      <int val="1"/>
+      <fn name="count">
+       <varRef name="newSeq" slot="0"/>
+      </fn>
+     </to>
+     <choose role="return">
+      <vc op="eq" onEmpty="0" comp="CAVC">
+       <subscript>
+        <varRef name="newSeq" slot="0"/>
+        <varRef name="i" slot="2"/>
+       </subscript>
+       <subscript>
+        <varRef name="oldSeq" slot="1"/>
+        <varRef name="i" slot="2"/>
+       </subscript>
+      </vc>
+      <int val="1"/>
+      <true/>
+      <int val="0"/>
+     </choose>
+    </for>
+   </fn>
+  </function>
+ </co>
+ <co id="44" binds="">
+  <globalVariable name="Q{}svgCircleRadius" type="xs:integer" line="18" module="file:/home/pieter/saxonjs-experimenten/mastermind/mastermind-webinterface-svg.xslt" visibility="PRIVATE" jsAcceptor="return SaxonJS.U.Atomic.integer.cast(val);" jsCardCheck="function c(n) {return n==1;};">
+   <int val="50"/>
+  </globalVariable>
+ </co>
+ <co id="29" binds="11 30">
+  <globalVariable name="Q{http://saxon.sf.net/generated-variable}gg1966922461" type="xs:string" line="63" module="file:/home/pieter/saxonjs-experimenten/mastermind/mastermind-webinterface-svg.xslt" visibility="PRIVATE" jsAcceptor="return SaxonJS.U.Atomic.string.cast(val);" jsCardCheck="function c(n) {return n==1;};">
+   <fn vn="20" baseUri="file:/home/pieter/saxonjs-experimenten/mastermind/mastermind-webinterface-svg.xslt" ns="xsl=http://www.w3.org/1999/XSL/Transform xs=http://www.w3.org/2001/XMLSchema pcm=http://www.masereeuw.nl/xslt/2.0/functions svg=http://www.w3.org/2000/svg" line="63" name="concat">
+    <convert from="xs:integer" to="xs:string">
+     <cast as="xs:integer" emptiable="0">
+      <arith op="*" calc="f*f">
+       <gVarRef name="Q{}svgBoardWidth" bSlot="0"/>
+       <gVarRef name="Q{}svgPointsToEmFactor" bSlot="1"/>
+      </arith>
+     </cast>
+    </convert>
+    <str val="em"/>
+   </fn>
+  </globalVariable>
+ </co>
+ <co id="32" binds="11">
+  <globalVariable name="Q{http://saxon.sf.net/generated-variable}gg2075807623" type="xs:string" line="96" module="file:/home/pieter/saxonjs-experimenten/mastermind/mastermind-webinterface-svg.xslt" visibility="PRIVATE" jsAcceptor="return SaxonJS.U.Atomic.string.cast(val);" jsCardCheck="function c(n) {return n==1;};">
+   <convert vn="20" baseUri="file:/home/pieter/saxonjs-experimenten/mastermind/mastermind-webinterface-svg.xslt" ns="xsl=http://www.w3.org/1999/XSL/Transform xs=http://www.w3.org/2001/XMLSchema pcm=http://www.masereeuw.nl/xslt/2.0/functions svg=http://www.w3.org/2000/svg" line="96" from="xs:integer" to="xs:string">
+    <gVarRef name="Q{}svgBoardWidth" bSlot="0"/>
+   </convert>
+  </globalVariable>
+ </co>
+ <co id="8" binds="">
+  <globalVariable name="Q{}svgPinWidth" type="xs:integer" line="21" module="file:/home/pieter/saxonjs-experimenten/mastermind/mastermind-webinterface-svg.xslt" visibility="PRIVATE" jsAcceptor="return SaxonJS.U.Atomic.integer.cast(val);" jsCardCheck="function c(n) {return n==1;};">
+   <int val="62"/>
+  </globalVariable>
+ </co>
+ <co id="45" binds="3 25 46">
+  <template name="Q{}showMoves" flags="os" line="169" module="file:/home/pieter/saxonjs-experimenten/mastermind/mastermind-webinterface.xslt" slots="1">
+   <sequence role="body" vn="20" baseUri="file:/home/pieter/saxonjs-experimenten/mastermind/mastermind-webinterface.xslt" ns="xsl=http://www.w3.org/1999/XSL/Transform ixsl=http://saxonica.com/ns/interactiveXSLT xs=http://www.w3.org/2001/XMLSchema pcm=http://www.masereeuw.nl/xslt/2.0/functions svg=http://www.w3.org/2000/svg" line="170">
+    <param name="moves" slot="0" flags="r" as="element(Q{}moves)">
+     <treat role="conversion" as="element(Q{}moves)" jsTest="var q=SaxonJS.U.nameOfNode(item); return SaxonJS.U.isNode(item) &amp;&amp; item.nodeType==1 &amp;&amp; q.uri==''&amp;&amp;q.local=='moves';" diag="8|0|XTTE0590|moves">
+      <check card="1" diag="8|0|XTTE0590|moves">
+       <supplied slot="0"/>
+      </check>
+     </treat>
+    </param>
+    <choose line="173">
+     <ufCall name="Q{http://www.masereeuw.nl/xslt/2.0/functions}isSVG" tailCall="false" bSlot="0"/>
+     <applyT line="174" mode="Q{}svg" flags="t" bSlot="1">
+      <varRef role="select" name="moves" slot="0"/>
+     </applyT>
+     <true/>
+     <applyT line="177" mode="Q{}html" flags="t" bSlot="2">
+      <varRef role="select" name="moves" slot="0"/>
+     </applyT>
+    </choose>
+   </sequence>
+  </template>
+ </co>
+ <co id="47" binds="">
+  <globalVariable name="Q{}svgImageClassPrefix" type="xs:string" line="19" module="file:/home/pieter/saxonjs-experimenten/mastermind/mastermind-webinterface-svg.xslt" visibility="PRIVATE" jsAcceptor="return SaxonJS.U.Atomic.string.cast(val);" jsCardCheck="function c(n) {return n==1;};">
+   <str val="color-"/>
+  </globalVariable>
+ </co>
+ <co id="13" binds="">
+  <globalVariable name="Q{}widthForScore" type="xs:integer" line="15" module="file:/home/pieter/saxonjs-experimenten/mastermind/mastermind-webinterface-svg.xslt" visibility="PRIVATE" jsAcceptor="return SaxonJS.U.Atomic.integer.cast(val);" jsCardCheck="function c(n) {return n==1;};">
+   <int val="375"/>
+  </globalVariable>
+ </co>
+ <co id="9" binds="12">
+  <globalVariable name="Q{http://saxon.sf.net/generated-variable}gg1802321690" type="xs:decimal" line="211" module="file:/home/pieter/saxonjs-experimenten/mastermind/mastermind-webinterface-svg.xslt" visibility="PRIVATE" jsAcceptor="return SaxonJS.U.Atomic.decimal.cast(val);" jsCardCheck="function c(n) {return n==1;};">
+   <arith vn="20" baseUri="file:/home/pieter/saxonjs-experimenten/mastermind/mastermind-webinterface-svg.xslt" ns="xsl=http://www.w3.org/1999/XSL/Transform xs=http://www.w3.org/2001/XMLSchema pcm=http://www.masereeuw.nl/xslt/2.0/functions svg=http://www.w3.org/2000/svg" line="211" op="div" calc="i/i">
+    <gVarRef name="Q{}maxColumns" bSlot="0"/>
+    <int val="2"/>
+   </arith>
+  </globalVariable>
+ </co>
+ <co id="48" binds="">
+  <globalVariable name="Q{}svgColWidth" type="xs:integer" line="14" module="file:/home/pieter/saxonjs-experimenten/mastermind/mastermind-webinterface-svg.xslt" visibility="PRIVATE" jsAcceptor="return SaxonJS.U.Atomic.integer.cast(val);" jsCardCheck="function c(n) {return n==1;};">
+   <int val="125"/>
+  </globalVariable>
+ </co>
+ <co id="49" binds="">
+  <function name="Q{http://www.masereeuw.nl/xslt/2.0/functions}zeroColumn" line="31" module="file:/home/pieter/saxonjs-experimenten/mastermind/mastermind.xslt" eval="11" flags="pU" as="xs:integer+" slots="2">
+   <arg name="sequence" as="xs:integer+"/>
+   <arg name="column" as="xs:integer"/>
+   <sequence role="body" vn="20" baseUri="file:/home/pieter/saxonjs-experimenten/mastermind/mastermind.xslt" ns="xsl=http://www.w3.org/1999/XSL/Transform xs=http://www.w3.org/2001/XMLSchema pcm=http://www.masereeuw.nl/xslt/2.0/functions" line="35">
+    <fn name="subsequence">
+     <varRef name="sequence" slot="0"/>
+     <int val="1"/>
+     <arith op="-" calc="i-i">
+      <varRef name="column" slot="1"/>
+      <int val="1"/>
+     </arith>
+    </fn>
+    <int val="0"/>
+    <fn name="subsequence">
+     <varRef name="sequence" slot="0"/>
+     <arith op="+" calc="i+i">
+      <varRef name="column" slot="1"/>
+      <int val="1"/>
+     </arith>
+    </fn>
+   </sequence>
+  </function>
+ </co>
+ <co id="50" binds="16 45">
+  <mode name="Q{http://saxonica.com/ns/interactiveXSLT}onchange" onNo="TC" flags="W" patternSlots="0">
+   <templateRule prec="2" prio="0.5" seq="0" rank="0" minImp="0" slots="1" flags="os" line="183" module="file:/home/pieter/saxonjs-experimenten/mastermind/mastermind-webinterface.xslt">
+    <p.withPredicate role="match">
+     <p.nodeTest test="*:input" jsTest="var q=SaxonJS.U.nameOfNode(item); return SaxonJS.U.isNode(item) &amp;&amp; item.nodeType==1&amp;&amp;q.local == 'input'"/>
+     <vc vn="20" baseUri="file:/home/pieter/saxonjs-experimenten/mastermind/mastermind-webinterface.xslt" ns="xsl=http://www.w3.org/1999/XSL/Transform ixsl=http://saxonica.com/ns/interactiveXSLT xs=http://www.w3.org/2001/XMLSchema pcm=http://www.masereeuw.nl/xslt/2.0/functions svg=http://www.w3.org/2000/svg" line="183" op="eq" comp="CCC">
+      <data>
+       <axis name="attribute" nodeTest="attribute(Q{}id)" jsTest="return item.name=='id'"/>
+      </data>
+      <str val="renderAsSVG"/>
+     </vc>
+    </p.withPredicate>
+    <let role="action" vn="20" baseUri="file:/home/pieter/saxonjs-experimenten/mastermind/mastermind-webinterface.xslt" ns="xsl=http://www.w3.org/1999/XSL/Transform ixsl=http://saxonica.com/ns/interactiveXSLT xs=http://www.w3.org/2001/XMLSchema pcm=http://www.masereeuw.nl/xslt/2.0/functions svg=http://www.w3.org/2000/svg" line="185" var="moves" as="element(Q{}moves)" slot="0" eval="7">
+     <treat line="186" as="element(Q{}moves)" jsTest="var q=SaxonJS.U.nameOfNode(item); return SaxonJS.U.isNode(item) &amp;&amp; item.nodeType==1 &amp;&amp; q.uri==''&amp;&amp;q.local=='moves';" diag="3|0|XTTE0570|moves">
+      <check card="1" diag="3|0|XTTE0570|moves">
+       <callT name="collectMoves" bSlot="0">
+        <withParam name="mastermindDiv" flags="c" as="element(Q{}div)">
+         <treat line="184" as="element(Q{}div)" jsTest="var q=SaxonJS.U.nameOfNode(item); return item.nodeType==1 &amp;&amp; q.uri==''&amp;&amp;q.local=='div';" diag="3|0|XTTE0570|mastermindDiv">
+          <check card="1" diag="3|0|XTTE0570|mastermindDiv">
+           <fn name="key">
+            <str val="Q{http://saxon.sf.net/}kk101"/>
+            <str val="mastermind"/>
+            <root/>
+           </fn>
+          </check>
+         </treat>
+        </withParam>
+       </callT>
+      </check>
+     </treat>
+     <resultDoc line="189" global="#&#xA;#Fri Jan 20 21:37:14 CET 2017&#xA;method=html&#xA;" local="#&#xA;#Fri Jan 20 21:37:14 CET 2017&#xA;method={http\://saxonica.com/ns/interactiveXSLT}replace-content&#xA;">
+      <str role="href" val="#mastermind"/>
+      <callT role="content" line="190" name="showMoves" bSlot="1">
+       <withParam name="moves" flags="c" as="element(Q{}moves)">
+        <varRef line="191" name="moves" slot="0"/>
+       </withParam>
+      </callT>
+     </resultDoc>
+    </let>
+   </templateRule>
+  </mode>
+ </co>
+ <co id="37" binds="">
+  <function name="Q{http://www.masereeuw.nl/xslt/2.0/functions}zeroOutColumsWithSameColors" line="39" module="file:/home/pieter/saxonjs-experimenten/mastermind/mastermind.xslt" eval="3" flags="pU" as="xs:integer+" slots="3">
+   <arg name="seq1" as="xs:integer+"/>
+   <arg name="seq2" as="xs:integer+"/>
+   <check role="body" vn="20" baseUri="file:/home/pieter/saxonjs-experimenten/mastermind/mastermind.xslt" ns="xsl=http://www.w3.org/1999/XSL/Transform xs=http://www.w3.org/2001/XMLSchema pcm=http://www.masereeuw.nl/xslt/2.0/functions" line="43" card="+" diag="5|0|XTTE0780|pcm:zeroOutColumsWithSameColors">
+    <for var="i" as="xs:integer" slot="2">
+     <to role="in">
+      <int val="1"/>
+      <fn name="count">
+       <varRef name="seq1" slot="0"/>
+      </fn>
+     </to>
+     <choose role="return">
+      <vc op="eq" onEmpty="0" comp="CAVC">
+       <subscript>
+        <varRef name="seq1" slot="0"/>
+        <varRef name="i" slot="2"/>
+       </subscript>
+       <subscript>
+        <varRef name="seq2" slot="1"/>
+        <varRef name="i" slot="2"/>
+       </subscript>
+      </vc>
+      <int val="0"/>
+      <true/>
+      <subscript>
+       <varRef name="seq1" slot="0"/>
+       <varRef name="i" slot="2"/>
+      </subscript>
+     </choose>
+    </for>
+   </check>
+  </function>
+ </co>
+ <co id="51" binds="12 24 51 38 38 51 51 38">
+  <function name="Q{http://www.masereeuw.nl/xslt/2.0/functions}calculateColorsForMove" line="49" module="file:/home/pieter/saxonjs-experimenten/mastermind/mastermind.xslt" eval="8" flags="pU" as="xs:integer*" slots="7">
+   <arg name="color" as="xs:integer"/>
+   <arg name="stopAtColor" as="xs:integer"/>
+   <arg name="givenSequence" as="xs:integer*"/>
+   <arg name="earlierMoves" as="element(Q{}moves)"/>
+   <tailCallLoop role="body" vn="20" baseUri="file:/home/pieter/saxonjs-experimenten/mastermind/mastermind.xslt" ns="xsl=http://www.w3.org/1999/XSL/Transform xs=http://www.w3.org/2001/XMLSchema pcm=http://www.masereeuw.nl/xslt/2.0/functions" line="58">
+    <choose>
+     <compareToInt op="eq" val="0">
+      <varRef name="color" slot="0"/>
+     </compareToInt>
+     <empty/>
+     <true/>
+     <let line="64" var="newSequence" as="xs:integer+" slot="4" eval="11">
+      <sequence>
+       <varRef name="givenSequence" slot="2"/>
+       <varRef name="color" slot="0"/>
+      </sequence>
+      <choose line="69">
+       <vc op="eq" onEmpty="0" comp="CAVC">
+        <fn name="count">
+         <varRef name="newSequence" slot="4"/>
+        </fn>
+        <gVarRef name="Q{}maxColumns" bSlot="0"/>
+       </vc>
+       <choose line="71">
+        <ufCall name="Q{http://www.masereeuw.nl/xslt/2.0/functions}checkEarlierMoves" tailCall="false" bSlot="1" eval="4 6">
+         <varRef name="newSequence" slot="4"/>
+         <varRef name="earlierMoves" slot="3"/>
+        </ufCall>
+        <varRef line="74" name="newSequence" slot="4"/>
+        <true/>
+        <ufCall line="79" name="Q{http://www.masereeuw.nl/xslt/2.0/functions}calculateColorsForMove" tailCall="self" bSlot="2" eval="7 6 4 6">
+         <ufCall name="Q{http://www.masereeuw.nl/xslt/2.0/functions}getNextColor" tailCall="false" bSlot="3" eval="6 6">
+          <varRef name="color" slot="0"/>
+          <varRef name="stopAtColor" slot="1"/>
+         </ufCall>
+         <varRef name="stopAtColor" slot="1"/>
+         <varRef name="givenSequence" slot="2"/>
+         <varRef name="earlierMoves" slot="3"/>
+        </ufCall>
+       </choose>
+       <true/>
+       <let line="85" var="nextColor" as="xs:integer" slot="5" eval="7">
+        <ufCall name="Q{http://www.masereeuw.nl/xslt/2.0/functions}getNextColor" tailCall="false" bSlot="4" eval="6 0">
+         <varRef name="color" slot="0"/>
+         <int val="0"/>
+        </ufCall>
+        <let line="86" var="fullRow" as="xs:integer*" slot="6" eval="3">
+         <ufCall line="87" name="Q{http://www.masereeuw.nl/xslt/2.0/functions}calculateColorsForMove" tailCall="false" bSlot="5" eval="6 6 4 6">
+          <varRef name="nextColor" slot="5"/>
+          <varRef name="nextColor" slot="5"/>
+          <varRef name="newSequence" slot="4"/>
+          <varRef name="earlierMoves" slot="3"/>
+         </ufCall>
+         <choose line="90">
+          <fn name="exists">
+           <varRef name="fullRow" slot="6"/>
+          </fn>
+          <varRef line="93" name="fullRow" slot="6"/>
+          <true/>
+          <ufCall line="98" name="Q{http://www.masereeuw.nl/xslt/2.0/functions}calculateColorsForMove" tailCall="self" bSlot="6" eval="7 6 4 6">
+           <ufCall name="Q{http://www.masereeuw.nl/xslt/2.0/functions}getNextColor" tailCall="false" bSlot="7" eval="6 6">
+            <varRef name="color" slot="0"/>
+            <varRef name="stopAtColor" slot="1"/>
+           </ufCall>
+           <varRef name="stopAtColor" slot="1"/>
+           <varRef name="givenSequence" slot="2"/>
+           <varRef name="earlierMoves" slot="3"/>
+          </ufCall>
+         </choose>
+        </let>
+       </let>
+      </choose>
+     </let>
+    </choose>
+   </tailCallLoop>
+  </function>
+ </co>
+ <co id="4" binds="15">
+  <function name="Q{http://www.masereeuw.nl/xslt/2.0/functions}boolFromInput" line="56" module="file:/home/pieter/saxonjs-experimenten/mastermind/mastermind-webinterface.xslt" eval="7" flags="pU" as="xs:boolean" slots="3">
+   <arg name="element" as="element()"/>
+   <arg name="property" as="xs:string"/>
+   <let role="body" vn="20" baseUri="file:/home/pieter/saxonjs-experimenten/mastermind/mastermind-webinterface.xslt" ns="xsl=http://www.w3.org/1999/XSL/Transform ixsl=http://saxonica.com/ns/interactiveXSLT xs=http://www.w3.org/2001/XMLSchema pcm=http://www.masereeuw.nl/xslt/2.0/functions svg=http://www.w3.org/2000/svg" line="60" var="val" as="xs:string" slot="2" eval="8">
+    <fn name="string">
+     <ufCall name="Q{http://www.masereeuw.nl/xslt/2.0/functions}get" tailCall="false" bSlot="0" eval="6 6">
+      <varRef name="element" slot="0"/>
+      <varRef name="property" slot="1"/>
+     </ufCall>
+    </fn>
+    <choose line="61">
+     <fn name="not">
+      <varRef name="val" slot="2"/>
+     </fn>
+     <false/>
+     <true/>
+     <cast as="xs:boolean" emptiable="0">
+      <varRef name="val" slot="2"/>
+     </cast>
+    </choose>
+   </let>
+  </function>
+ </co>
+ <co id="52" binds="16 12 41 51 45">
+  <mode name="Q{http://saxonica.com/ns/interactiveXSLT}onclick" onNo="TC" flags="W" patternSlots="0">
+   <templateRule prec="2" prio="0.5" seq="3" rank="0" minImp="0" slots="3" flags="os" line="243" module="file:/home/pieter/saxonjs-experimenten/mastermind/mastermind-webinterface.xslt">
+    <p.withPredicate role="match">
+     <p.nodeTest test="*:input" jsTest="var q=SaxonJS.U.nameOfNode(item); return SaxonJS.U.isNode(item) &amp;&amp; item.nodeType==1&amp;&amp;q.local == 'input'"/>
+     <vc vn="20" baseUri="file:/home/pieter/saxonjs-experimenten/mastermind/mastermind-webinterface.xslt" ns="xsl=http://www.w3.org/1999/XSL/Transform ixsl=http://saxonica.com/ns/interactiveXSLT xs=http://www.w3.org/2001/XMLSchema pcm=http://www.masereeuw.nl/xslt/2.0/functions svg=http://www.w3.org/2000/svg" line="243" op="eq" comp="CCC">
+      <data>
+       <axis name="attribute" nodeTest="attribute(Q{}id)" jsTest="return item.name=='id'"/>
+      </data>
+      <str val="next-move-button"/>
+     </vc>
+    </p.withPredicate>
+    <let role="action" vn="20" baseUri="file:/home/pieter/saxonjs-experimenten/mastermind/mastermind-webinterface.xslt" ns="xsl=http://www.w3.org/1999/XSL/Transform ixsl=http://saxonica.com/ns/interactiveXSLT xs=http://www.w3.org/2001/XMLSchema pcm=http://www.masereeuw.nl/xslt/2.0/functions svg=http://www.w3.org/2000/svg" line="244" var="mastermindDiv" as="node()" slot="0" eval="7">
+     <check card="1" diag="3|0|XTTE0570|mastermindDiv">
+      <fn name="key">
+       <str val="Q{http://saxon.sf.net/}kk102"/>
+       <str val="mastermind"/>
+       <root/>
+      </fn>
+     </check>
+     <let line="246" var="earlierMoves" as="element(Q{}moves)" slot="1" eval="7">
+      <treat line="247" as="element(Q{}moves)" jsTest="var q=SaxonJS.U.nameOfNode(item); return SaxonJS.U.isNode(item) &amp;&amp; item.nodeType==1 &amp;&amp; q.uri==''&amp;&amp;q.local=='moves';" diag="3|0|XTTE0570|earlierMoves">
+       <check card="1" diag="3|0|XTTE0570|earlierMoves">
+        <callT name="collectMoves" bSlot="0">
+         <withParam name="mastermindDiv" flags="c" as="element(Q{}div)">
+          <varRef name="mastermindDiv" slot="0"/>
+         </withParam>
+        </callT>
+       </check>
+      </treat>
+      <choose line="251">
+       <vc op="lt" onEmpty="0" comp="CAVC">
+        <cast as="xs:integer" emptiable="1">
+         <data>
+          <slash>
+           <filter flags="b">
+            <slash simple="1">
+             <varRef name="earlierMoves" slot="1"/>
+             <axis name="child" nodeTest="element(Q{}move)" jsTest="var q=SaxonJS.U.nameOfNode(item); return item.nodeType==1 &amp;&amp; q.uri==''&amp;&amp;q.local=='move';"/>
+            </slash>
+            <fn name="empty">
+             <axis name="following-sibling" nodeTest="element(Q{}move)" jsTest="var q=SaxonJS.U.nameOfNode(item); return item.nodeType==1 &amp;&amp; q.uri==''&amp;&amp;q.local=='move';"/>
+            </fn>
+           </filter>
+           <axis name="attribute" nodeTest="attribute(Q{}identicalColumnCount)" jsTest="return item.name=='identicalColumnCount'"/>
+          </slash>
+         </data>
+        </cast>
+        <gVarRef name="Q{}maxColumns" bSlot="1"/>
+       </vc>
+       <let line="255" var="moves" as="element(Q{}moves)" slot="2" eval="7">
+        <treat line="256" as="element(Q{}moves)" jsTest="var q=SaxonJS.U.nameOfNode(item); return SaxonJS.U.isNode(item) &amp;&amp; item.nodeType==1 &amp;&amp; q.uri==''&amp;&amp;q.local=='moves';" diag="3|0|XTTE0570|moves">
+         <check card="1" diag="3|0|XTTE0570|moves">
+          <callT name="injectNewMove" bSlot="2">
+           <withParam name="moves" flags="c" as="element(Q{}moves)">
+            <varRef line="257" name="earlierMoves" slot="1"/>
+           </withParam>
+           <withParam name="newColors" flags="c" as="xs:integer*">
+            <ufCall line="252" name="Q{http://www.masereeuw.nl/xslt/2.0/functions}calculateColorsForMove" tailCall="false" bSlot="3" eval="0 0 0 6">
+             <int val="1"/>
+             <int val="1"/>
+             <empty/>
+             <varRef name="earlierMoves" slot="1"/>
+            </ufCall>
+           </withParam>
+          </callT>
+         </check>
+        </treat>
+        <resultDoc line="262" global="#&#xA;#Fri Jan 20 21:37:14 CET 2017&#xA;method=html&#xA;" local="#&#xA;#Fri Jan 20 21:37:14 CET 2017&#xA;method={http\://saxonica.com/ns/interactiveXSLT}replace-content&#xA;">
+         <str role="href" val="#mastermind"/>
+         <callT role="content" line="263" name="showMoves" bSlot="4">
+          <withParam name="moves" flags="c" as="element(Q{}moves)">
+           <varRef line="264" name="moves" slot="2"/>
+          </withParam>
+         </callT>
+        </resultDoc>
+       </let>
+       <true/>
+       <forEach line="270">
+        <filter line="269" flags="">
+         <slash simple="1">
+          <varRef name="mastermindDiv" slot="0"/>
+          <axis name="child" nodeTest="element(Q{}p)" jsTest="var q=SaxonJS.U.nameOfNode(item); return item.nodeType==1 &amp;&amp; q.uri==''&amp;&amp;q.local=='p';"/>
+         </slash>
+         <vc op="eq" comp="CCC">
+          <atomSing card="?" diag="1|0||eq">
+           <slash>
+            <axis name="child" nodeTest="element(Q{}input)" jsTest="var q=SaxonJS.U.nameOfNode(item); return item.nodeType==1 &amp;&amp; q.uri==''&amp;&amp;q.local=='input';"/>
+            <axis name="attribute" nodeTest="attribute(Q{}id)" jsTest="return item.name=='id'"/>
+           </slash>
+          </atomSing>
+          <str val="next-move-button"/>
+         </vc>
+        </filter>
+        <ifCall xmlns:ixsl="http://saxonica.com/ns/interactiveXSLT" name="ixsl:set-style" type="item()*">
+         <str val="display"/>
+         <str val="none"/>
+         <dot type="element(Q{}p)"/>
+        </ifCall>
+       </forEach>
+      </choose>
+     </let>
+    </let>
+   </templateRule>
+   <templateRule prec="2" prio="0.5" seq="2" rank="0" minImp="0" slots="0" flags="os" line="231" module="file:/home/pieter/saxonjs-experimenten/mastermind/mastermind-webinterface.xslt">
+    <p.withPredicate role="match">
+     <p.nodeTest test="*:a" jsTest="var q=SaxonJS.U.nameOfNode(item); return SaxonJS.U.isNode(item) &amp;&amp; item.nodeType==1&amp;&amp;q.local == 'a'"/>
+     <vc vn="20" baseUri="file:/home/pieter/saxonjs-experimenten/mastermind/mastermind-webinterface.xslt" ns="xsl=http://www.w3.org/1999/XSL/Transform ixsl=http://saxonica.com/ns/interactiveXSLT xs=http://www.w3.org/2001/XMLSchema pcm=http://www.masereeuw.nl/xslt/2.0/functions svg=http://www.w3.org/2000/svg" line="231" op="eq" comp="CCC">
+      <data>
+       <axis name="attribute" nodeTest="attribute(Q{}class)" jsTest="return item.name=='class'"/>
+      </data>
+      <str val="switch-to-howtoplay"/>
+     </vc>
+    </p.withPredicate>
+    <forEach role="action" vn="20" baseUri="file:/home/pieter/saxonjs-experimenten/mastermind/mastermind-webinterface.xslt" ns="xsl=http://www.w3.org/1999/XSL/Transform ixsl=http://saxonica.com/ns/interactiveXSLT xs=http://www.w3.org/2001/XMLSchema pcm=http://www.masereeuw.nl/xslt/2.0/functions svg=http://www.w3.org/2000/svg" line="232">
+     <filter flags="b">
+      <slash simple="1">
+       <root/>
+       <axis name="descendant" nodeTest="*:div" jsTest="var q=SaxonJS.U.nameOfNode(item); return SaxonJS.U.isNode(item) &amp;&amp; item.nodeType==1&amp;&amp;q.local == 'div'"/>
+      </slash>
+      <fn name="contains">
+       <cvUntyped to="xs:string">
+        <data>
+         <axis name="attribute" nodeTest="attribute(Q{}class)" jsTest="return item.name=='class'"/>
+        </data>
+       </cvUntyped>
+       <str val="hideable"/>
+      </fn>
+     </filter>
+     <choose line="234">
+      <vc op="eq" onEmpty="0" comp="CCC">
+       <data>
+        <axis name="attribute" nodeTest="attribute(Q{}id)" jsTest="return item.name=='id'"/>
+       </data>
+       <str val="howtoplay"/>
+      </vc>
+      <ifCall xmlns:ixsl="http://saxonica.com/ns/interactiveXSLT" name="ixsl:set-style" type="item()*">
+       <str val="display"/>
+       <str val="block"/>
+       <dot type="*:div"/>
+      </ifCall>
+      <true/>
+      <ifCall xmlns:ixsl="http://saxonica.com/ns/interactiveXSLT" line="235" name="ixsl:set-style" type="item()*">
+       <str val="display"/>
+       <str val="none"/>
+       <dot type="*:div"/>
+      </ifCall>
+     </choose>
+    </forEach>
+   </templateRule>
+   <templateRule prec="2" prio="0.5" seq="1" rank="0" minImp="0" slots="0" flags="os" line="221" module="file:/home/pieter/saxonjs-experimenten/mastermind/mastermind-webinterface.xslt">
+    <p.withPredicate role="match">
+     <p.nodeTest test="*:a" jsTest="var q=SaxonJS.U.nameOfNode(item); return SaxonJS.U.isNode(item) &amp;&amp; item.nodeType==1&amp;&amp;q.local == 'a'"/>
+     <vc vn="20" baseUri="file:/home/pieter/saxonjs-experimenten/mastermind/mastermind-webinterface.xslt" ns="xsl=http://www.w3.org/1999/XSL/Transform ixsl=http://saxonica.com/ns/interactiveXSLT xs=http://www.w3.org/2001/XMLSchema pcm=http://www.masereeuw.nl/xslt/2.0/functions svg=http://www.w3.org/2000/svg" line="221" op="eq" comp="CCC">
+      <data>
+       <axis name="attribute" nodeTest="attribute(Q{}class)" jsTest="return item.name=='class'"/>
+      </data>
+      <str val="switch-to-about"/>
+     </vc>
+    </p.withPredicate>
+    <forEach role="action" vn="20" baseUri="file:/home/pieter/saxonjs-experimenten/mastermind/mastermind-webinterface.xslt" ns="xsl=http://www.w3.org/1999/XSL/Transform ixsl=http://saxonica.com/ns/interactiveXSLT xs=http://www.w3.org/2001/XMLSchema pcm=http://www.masereeuw.nl/xslt/2.0/functions svg=http://www.w3.org/2000/svg" line="222">
+     <filter flags="b">
+      <slash simple="1">
+       <root/>
+       <axis name="descendant" nodeTest="*:div" jsTest="var q=SaxonJS.U.nameOfNode(item); return SaxonJS.U.isNode(item) &amp;&amp; item.nodeType==1&amp;&amp;q.local == 'div'"/>
+      </slash>
+      <fn name="contains">
+       <cvUntyped to="xs:string">
+        <data>
+         <axis name="attribute" nodeTest="attribute(Q{}class)" jsTest="return item.name=='class'"/>
+        </data>
+       </cvUntyped>
+       <str val="hideable"/>
+      </fn>
+     </filter>
+     <choose line="224">
+      <vc op="eq" onEmpty="0" comp="CCC">
+       <data>
+        <axis name="attribute" nodeTest="attribute(Q{}id)" jsTest="return item.name=='id'"/>
+       </data>
+       <str val="about"/>
+      </vc>
+      <ifCall xmlns:ixsl="http://saxonica.com/ns/interactiveXSLT" name="ixsl:set-style" type="item()*">
+       <str val="display"/>
+       <str val="block"/>
+       <dot type="*:div"/>
+      </ifCall>
+      <true/>
+      <ifCall xmlns:ixsl="http://saxonica.com/ns/interactiveXSLT" line="225" name="ixsl:set-style" type="item()*">
+       <str val="display"/>
+       <str val="none"/>
+       <dot type="*:div"/>
+      </ifCall>
+     </choose>
+    </forEach>
+   </templateRule>
+   <templateRule prec="2" prio="0.5" seq="0" rank="0" minImp="0" slots="0" flags="os" line="211" module="file:/home/pieter/saxonjs-experimenten/mastermind/mastermind-webinterface.xslt">
+    <p.withPredicate role="match">
+     <p.nodeTest test="*:a" jsTest="var q=SaxonJS.U.nameOfNode(item); return SaxonJS.U.isNode(item) &amp;&amp; item.nodeType==1&amp;&amp;q.local == 'a'"/>
+     <vc vn="20" baseUri="file:/home/pieter/saxonjs-experimenten/mastermind/mastermind-webinterface.xslt" ns="xsl=http://www.w3.org/1999/XSL/Transform ixsl=http://saxonica.com/ns/interactiveXSLT xs=http://www.w3.org/2001/XMLSchema pcm=http://www.masereeuw.nl/xslt/2.0/functions svg=http://www.w3.org/2000/svg" line="211" op="eq" comp="CCC">
+      <data>
+       <axis name="attribute" nodeTest="attribute(Q{}class)" jsTest="return item.name=='class'"/>
+      </data>
+      <str val="switch-to-play"/>
+     </vc>
+    </p.withPredicate>
+    <forEach role="action" vn="20" baseUri="file:/home/pieter/saxonjs-experimenten/mastermind/mastermind-webinterface.xslt" ns="xsl=http://www.w3.org/1999/XSL/Transform ixsl=http://saxonica.com/ns/interactiveXSLT xs=http://www.w3.org/2001/XMLSchema pcm=http://www.masereeuw.nl/xslt/2.0/functions svg=http://www.w3.org/2000/svg" line="212">
+     <filter flags="b">
+      <slash simple="1">
+       <root/>
+       <axis name="descendant" nodeTest="*:div" jsTest="var q=SaxonJS.U.nameOfNode(item); return SaxonJS.U.isNode(item) &amp;&amp; item.nodeType==1&amp;&amp;q.local == 'div'"/>
+      </slash>
+      <fn name="contains">
+       <cvUntyped to="xs:string">
+        <data>
+         <axis name="attribute" nodeTest="attribute(Q{}class)" jsTest="return item.name=='class'"/>
+        </data>
+       </cvUntyped>
+       <str val="hideable"/>
+      </fn>
+     </filter>
+     <choose line="214">
+      <vc op="eq" onEmpty="0" comp="CCC">
+       <data>
+        <axis name="attribute" nodeTest="attribute(Q{}id)" jsTest="return item.name=='id'"/>
+       </data>
+       <str val="play"/>
+      </vc>
+      <ifCall xmlns:ixsl="http://saxonica.com/ns/interactiveXSLT" name="ixsl:set-style" type="item()*">
+       <str val="display"/>
+       <str val="block"/>
+       <dot type="*:div"/>
+      </ifCall>
+      <true/>
+      <ifCall xmlns:ixsl="http://saxonica.com/ns/interactiveXSLT" line="215" name="ixsl:set-style" type="item()*">
+       <str val="display"/>
+       <str val="none"/>
+       <dot type="*:div"/>
+      </ifCall>
+     </choose>
+    </forEach>
+   </templateRule>
+  </mode>
+ </co>
+ <co id="53" binds="">
+  <function name="Q{http://www.masereeuw.nl/xslt/2.0/functions}showIntSeq" line="272" module="file:/home/pieter/saxonjs-experimenten/mastermind/mastermind.xslt" eval="8" flags="pU" as="xs:string" slots="2">
+   <arg name="intseq" as="xs:integer*"/>
+   <cvUntyped role="body" vn="20" baseUri="file:/home/pieter/saxonjs-experimenten/mastermind/mastermind.xslt" ns="xsl=http://www.w3.org/1999/XSL/Transform xs=http://www.w3.org/2001/XMLSchema pcm=http://www.masereeuw.nl/xslt/2.0/functions" line="275" to="xs:string">
+    <cast as="xs:untypedAtomic" emptiable="0">
+     <fn name="concat">
+      <str val="("/>
+      <fn name="_STRING-JOIN_2.0">
+       <for var="i" as="xs:integer" slot="1">
+        <varRef role="in" name="intseq" slot="0"/>
+        <fn role="return" name="string">
+         <varRef name="i" slot="1"/>
+        </fn>
+       </for>
+       <str val=", "/>
+      </fn>
+      <str val=")"/>
+     </fn>
+    </cast>
+   </cvUntyped>
+  </function>
+ </co>
+ <co id="54" binds="51 42 45">
+  <template name="Q{}initial-template" flags="os" line="88" module="file:/home/pieter/saxonjs-experimenten/mastermind/mastermind-webinterface.xslt" slots="2">
+   <let role="body" vn="20" baseUri="file:/home/pieter/saxonjs-experimenten/mastermind/mastermind-webinterface.xslt" ns="xsl=http://www.w3.org/1999/XSL/Transform ixsl=http://saxonica.com/ns/interactiveXSLT xs=http://www.w3.org/2001/XMLSchema pcm=http://www.masereeuw.nl/xslt/2.0/functions svg=http://www.w3.org/2000/svg" line="119" var="first-move" as="xs:integer*" slot="0" eval="3">
+    <ufCall name="Q{http://www.masereeuw.nl/xslt/2.0/functions}calculateColorsForMove" tailCall="false" bSlot="0" eval="0 0 0 4">
+     <int val="1"/>
+     <int val="1"/>
+     <empty/>
+     <treat as="element(Q{}moves)" jsTest="var q=SaxonJS.U.nameOfNode(item); return q.uri==''&amp;&amp;q.local=='moves';" diag="3|0|XTTE0570|emptyMoves">
+      <elem name="moves" namespaces="xs=http://www.w3.org/2001/XMLSchema svg=http://www.w3.org/2000/svg pcm=http://www.masereeuw.nl/xslt/2.0/functions">
+       <empty/>
+      </elem>
+     </treat>
+    </ufCall>
+    <let line="121" var="moves" as="element(Q{}moves)" slot="1" eval="7">
+     <treat line="123" as="element(Q{}moves)" jsTest="var q=SaxonJS.U.nameOfNode(item); return item.nodeType==1 &amp;&amp; q.uri==''&amp;&amp;q.local=='moves';" diag="3|0|XTTE0570|moves">
+      <elem name="moves" namespaces="xs=http://www.w3.org/2001/XMLSchema svg=http://www.w3.org/2000/svg pcm=http://www.masereeuw.nl/xslt/2.0/functions">
+       <callT name="doNewMoves" bSlot="1">
+        <withParam name="newColors" flags="c" as="xs:integer*">
+         <varRef name="first-move" slot="0"/>
+        </withParam>
+       </callT>
+      </elem>
+     </treat>
+     <sequence line="130">
+      <resultDoc global="#&#xA;#Fri Jan 20 21:37:14 CET 2017&#xA;method=html&#xA;" local="#&#xA;#Fri Jan 20 21:37:14 CET 2017&#xA;method={http\://saxonica.com/ns/interactiveXSLT}replace-content&#xA;">
+       <str role="href" val="#about"/>
+       <copyOf role="content" line="131" flags="vsc">
+        <slash simple="1">
+         <fn name="doc">
+          <str val="about.xml"/>
+         </fn>
+         <axis name="child" nodeTest="element()" jsTest="return item.nodeType==1;"/>
+        </slash>
+       </copyOf>
+      </resultDoc>
+      <resultDoc line="134" global="#&#xA;#Fri Jan 20 21:37:14 CET 2017&#xA;method=html&#xA;" local="#&#xA;#Fri Jan 20 21:37:14 CET 2017&#xA;method={http\://saxonica.com/ns/interactiveXSLT}replace-content&#xA;">
+       <str role="href" val="#howtoplay"/>
+       <copyOf role="content" line="135" flags="vsc">
+        <slash simple="1">
+         <fn name="doc">
+          <str val="howtoplay.xml"/>
+         </fn>
+         <axis name="child" nodeTest="element()" jsTest="return item.nodeType==1;"/>
+        </slash>
+       </copyOf>
+      </resultDoc>
+      <resultDoc line="138" global="#&#xA;#Fri Jan 20 21:37:14 CET 2017&#xA;method=html&#xA;" local="#&#xA;#Fri Jan 20 21:37:14 CET 2017&#xA;method={http\://saxonica.com/ns/interactiveXSLT}replace-content&#xA;">
+       <str role="href" val="#mastermind"/>
+       <callT role="content" line="139" name="showMoves" bSlot="2">
+        <withParam name="moves" flags="c" as="element(Q{}moves)">
+         <varRef line="140" name="moves" slot="1"/>
+        </withParam>
+       </callT>
+      </resultDoc>
+     </sequence>
+    </let>
+   </let>
+  </template>
+ </co>
+ <co id="46" binds="46 33 33 46 46">
+  <mode name="Q{}html" onNo="TC" flags="W" patternSlots="0">
+   <templateRule prec="2" prio="0.0" seq="2" rank="0" minImp="0" slots="0" flags="os" line="100" module="file:/home/pieter/saxonjs-experimenten/mastermind/mastermind-webinterface-html.xslt">
+    <p.nodeTest role="match" test="element(Q{}color)" jsTest="var q=SaxonJS.U.nameOfNode(item); return SaxonJS.U.isNode(item) &amp;&amp; item.nodeType==1 &amp;&amp; q.uri==''&amp;&amp;q.local=='color';"/>
+    <elem role="action" vn="20" baseUri="file:/home/pieter/saxonjs-experimenten/mastermind/mastermind-webinterface-html.xslt" ns="xsl=http://www.w3.org/1999/XSL/Transform xs=http://www.w3.org/2001/XMLSchema pcm=http://www.masereeuw.nl/xslt/2.0/functions svg=http://www.w3.org/2000/svg" line="101" name="td" namespaces="xs=http://www.w3.org/2001/XMLSchema svg=http://www.w3.org/2000/svg pcm=http://www.masereeuw.nl/xslt/2.0/functions">
+     <elem name="img">
+      <sequence>
+       <att name="src">
+        <fn name="concat">
+         <str val="color"/>
+         <convert from="xs:untypedAtomic" to="xs:string">
+          <data>
+           <dot type="element(Q{}color)"/>
+          </data>
+         </convert>
+         <str val=".png"/>
+        </fn>
+       </att>
+       <att name="alt">
+        <fn name="concat">
+         <str val="color #"/>
+         <atomSing card="?" diag="0|1||concat">
+          <dot type="element(Q{}color)"/>
+         </atomSing>
+        </fn>
+       </att>
+      </sequence>
+     </elem>
+    </elem>
+   </templateRule>
+   <templateRule prec="2" prio="0.0" seq="1" rank="0" minImp="0" slots="0" flags="os" line="56" module="file:/home/pieter/saxonjs-experimenten/mastermind/mastermind-webinterface-html.xslt">
+    <p.nodeTest role="match" test="element(Q{}move)" jsTest="var q=SaxonJS.U.nameOfNode(item); return SaxonJS.U.isNode(item) &amp;&amp; item.nodeType==1 &amp;&amp; q.uri==''&amp;&amp;q.local=='move';"/>
+    <elem role="action" vn="20" baseUri="file:/home/pieter/saxonjs-experimenten/mastermind/mastermind-webinterface-html.xslt" ns="xsl=http://www.w3.org/1999/XSL/Transform xs=http://www.w3.org/2001/XMLSchema pcm=http://www.masereeuw.nl/xslt/2.0/functions svg=http://www.w3.org/2000/svg" line="58" name="tr" namespaces="xs=http://www.w3.org/2001/XMLSchema svg=http://www.w3.org/2000/svg pcm=http://www.masereeuw.nl/xslt/2.0/functions">
+     <sequence>
+      <choose>
+       <fn name="exists">
+        <axis name="attribute" nodeTest="attribute(Q{}id)" jsTest="return item.name=='id'"/>
+       </fn>
+       <att line="59" name="id">
+        <convert from="xs:untypedAtomic" to="xs:string">
+         <data>
+          <axis name="attribute" nodeTest="attribute(Q{}id)" jsTest="return item.name=='id'"/>
+         </data>
+        </convert>
+       </att>
+      </choose>
+      <choose line="62">
+       <vc op="eq" onEmpty="0" comp="CCC">
+        <data>
+         <axis name="attribute" nodeTest="attribute(Q{}class)" jsTest="return item.name=='class'"/>
+        </data>
+        <str val="giving-up"/>
+       </vc>
+       <elem line="63" name="td" namespaces="xs=http://www.w3.org/2001/XMLSchema svg=http://www.w3.org/2000/svg pcm=http://www.masereeuw.nl/xslt/2.0/functions">
+        <sequence>
+         <att name="colspan">
+          <str val="6"/>
+         </att>
+         <att name="class">
+          <str val="giving-up"/>
+         </att>
+         <valueOf>
+          <str val="Giving up (please check the scores you supplied)"/>
+         </valueOf>
+        </sequence>
+       </elem>
+       <vc line="65" op="eq" onEmpty="0" comp="CCC">
+        <data>
+         <axis name="attribute" nodeTest="attribute(Q{}id)" jsTest="return item.name=='id'"/>
+        </data>
+        <str val="proposal"/>
+       </vc>
+       <sequence line="66">
+        <applyT mode="Q{}html" flags="i" bSlot="0">
+         <axis role="select" name="child" nodeTest="node()" jsTest="return true;"/>
+        </applyT>
+        <elem line="68" name="td" namespaces="xs=http://www.w3.org/2001/XMLSchema svg=http://www.w3.org/2000/svg pcm=http://www.masereeuw.nl/xslt/2.0/functions">
+         <callT name="scoreInput" bSlot="1">
+          <withParam name="inputName" flags="c" as="xs:string">
+           <str val="identicalColumnCount"/>
+          </withParam>
+          <withParam name="inputValue" flags="c" as="document-node()">
+           <cvUntyped line="70" to="xs:integer">
+            <data>
+             <doc base="file:/home/pieter/saxonjs-experimenten/mastermind/mastermind-webinterface-html.xslt" flags="t" validation="preserve">
+              <valueOf>
+               <convert from="xs:integer" to="xs:string">
+                <choose>
+                 <fn name="not">
+                  <fn name="normalize-space">
+                   <cvUntyped to="xs:string">
+                    <data>
+                     <axis name="attribute" nodeTest="attribute(Q{}identicalColumnCount)" jsTest="return item.name=='identicalColumnCount'"/>
+                    </data>
+                   </cvUntyped>
+                  </fn>
+                 </fn>
+                 <int val="0"/>
+                 <true/>
+                 <cast as="xs:integer" emptiable="1">
+                  <data>
+                   <axis name="attribute" nodeTest="attribute(Q{}identicalColumnCount)" jsTest="return item.name=='identicalColumnCount'"/>
+                  </data>
+                 </cast>
+                </choose>
+               </convert>
+              </valueOf>
+             </doc>
+            </data>
+           </cvUntyped>
+          </withParam>
+         </callT>
+        </elem>
+        <elem line="74" name="td" namespaces="xs=http://www.w3.org/2001/XMLSchema svg=http://www.w3.org/2000/svg pcm=http://www.masereeuw.nl/xslt/2.0/functions">
+         <callT name="scoreInput" bSlot="2">
+          <withParam name="inputName" flags="c" as="xs:string">
+           <str val="identicalColorCount"/>
+          </withParam>
+          <withParam name="inputValue" flags="c" as="document-node()">
+           <cvUntyped line="76" to="xs:integer">
+            <data>
+             <doc base="file:/home/pieter/saxonjs-experimenten/mastermind/mastermind-webinterface-html.xslt" flags="t" validation="preserve">
+              <valueOf>
+               <convert from="xs:integer" to="xs:string">
+                <choose>
+                 <fn name="not">
+                  <fn name="normalize-space">
+                   <cvUntyped to="xs:string">
+                    <data>
+                     <axis name="attribute" nodeTest="attribute(Q{}identicalColorCount)" jsTest="return item.name=='identicalColorCount'"/>
+                    </data>
+                   </cvUntyped>
+                  </fn>
+                 </fn>
+                 <int val="0"/>
+                 <true/>
+                 <cast as="xs:integer" emptiable="1">
+                  <data>
+                   <axis name="attribute" nodeTest="attribute(Q{}identicalColorCount)" jsTest="return item.name=='identicalColorCount'"/>
+                  </data>
+                 </cast>
+                </choose>
+               </convert>
+              </valueOf>
+             </doc>
+            </data>
+           </cvUntyped>
+          </withParam>
+         </callT>
+        </elem>
+       </sequence>
+       <true/>
+       <sequence line="81">
+        <applyT mode="Q{}html" flags="i" bSlot="3">
+         <axis role="select" name="child" nodeTest="node()" jsTest="return true;"/>
+        </applyT>
+        <elem line="83" name="td" namespaces="xs=http://www.w3.org/2001/XMLSchema svg=http://www.w3.org/2000/svg pcm=http://www.masereeuw.nl/xslt/2.0/functions">
+         <sequence>
+          <valueOf>
+           <convert from="xs:untypedAtomic" to="xs:string">
+            <data>
+             <axis name="attribute" nodeTest="attribute(Q{}identicalColumnCount)" jsTest="return item.name=='identicalColumnCount'"/>
+            </data>
+           </convert>
+          </valueOf>
+          <elem line="85" name="input">
+           <sequence>
+            <att name="type">
+             <str val="hidden"/>
+            </att>
+            <att name="name">
+             <str val="identicalColumnCount"/>
+            </att>
+            <att name="value">
+             <convert from="xs:untypedAtomic" to="xs:string">
+              <data>
+               <axis name="attribute" nodeTest="attribute(Q{}identicalColumnCount)" jsTest="return item.name=='identicalColumnCount'"/>
+              </data>
+             </convert>
+            </att>
+           </sequence>
+          </elem>
+         </sequence>
+        </elem>
+        <elem line="88" name="td" namespaces="xs=http://www.w3.org/2001/XMLSchema svg=http://www.w3.org/2000/svg pcm=http://www.masereeuw.nl/xslt/2.0/functions">
+         <sequence>
+          <valueOf>
+           <convert from="xs:untypedAtomic" to="xs:string">
+            <data>
+             <axis name="attribute" nodeTest="attribute(Q{}identicalColorCount)" jsTest="return item.name=='identicalColorCount'"/>
+            </data>
+           </convert>
+          </valueOf>
+          <elem line="90" name="input">
+           <sequence>
+            <att name="type">
+             <str val="hidden"/>
+            </att>
+            <att name="name">
+             <str val="identicalColorCount"/>
+            </att>
+            <att name="value">
+             <convert from="xs:untypedAtomic" to="xs:string">
+              <data>
+               <axis name="attribute" nodeTest="attribute(Q{}identicalColorCount)" jsTest="return item.name=='identicalColorCount'"/>
+              </data>
+             </convert>
+            </att>
+           </sequence>
+          </elem>
+         </sequence>
+        </elem>
+       </sequence>
+      </choose>
+     </sequence>
+    </elem>
+   </templateRule>
+   <templateRule prec="2" prio="0.0" seq="0" rank="0" minImp="0" slots="0" flags="os" line="35" module="file:/home/pieter/saxonjs-experimenten/mastermind/mastermind-webinterface-html.xslt">
+    <p.nodeTest role="match" test="element(Q{}moves)" jsTest="var q=SaxonJS.U.nameOfNode(item); return SaxonJS.U.isNode(item) &amp;&amp; item.nodeType==1 &amp;&amp; q.uri==''&amp;&amp;q.local=='moves';"/>
+    <sequence role="action" vn="20" baseUri="file:/home/pieter/saxonjs-experimenten/mastermind/mastermind-webinterface-html.xslt" ns="xsl=http://www.w3.org/1999/XSL/Transform xs=http://www.w3.org/2001/XMLSchema pcm=http://www.masereeuw.nl/xslt/2.0/functions svg=http://www.w3.org/2000/svg" line="36">
+     <elem name="table" namespaces="xs=http://www.w3.org/2001/XMLSchema svg=http://www.w3.org/2000/svg pcm=http://www.masereeuw.nl/xslt/2.0/functions">
+      <sequence>
+       <att name="id">
+        <str val="moves"/>
+       </att>
+       <elem line="39" name="thead">
+        <elem name="tr">
+         <sequence>
+          <elem name="th">
+           <sequence>
+            <att name="colspan">
+             <str val="4"/>
+            </att>
+            <valueOf flags="S">
+             <str val="Move"/>
+            </valueOf>
+           </sequence>
+          </elem>
+          <elem line="40" name="th">
+           <valueOf>
+            <str val="# matching colums"/>
+           </valueOf>
+          </elem>
+          <elem line="41" name="th">
+           <valueOf>
+            <str val="# matching colours"/>
+           </valueOf>
+          </elem>
+         </sequence>
+        </elem>
+       </elem>
+       <elem line="45" name="tbody" namespaces="xs=http://www.w3.org/2001/XMLSchema svg=http://www.w3.org/2000/svg pcm=http://www.masereeuw.nl/xslt/2.0/functions">
+        <applyT mode="Q{}html" flags="i" bSlot="4">
+         <axis role="select" name="child" nodeTest="node()" jsTest="return true;"/>
+        </applyT>
+       </elem>
+      </sequence>
+     </elem>
+     <choose line="50">
+      <vc op="eq" onEmpty="0" comp="CCC">
+       <data>
+        <slash line="48" simple="1">
+         <check card="1" diag="3|0|XTTE0570|lastmove">
+          <filter flags="b">
+           <axis name="child" nodeTest="element(Q{}move)" jsTest="var q=SaxonJS.U.nameOfNode(item); return item.nodeType==1 &amp;&amp; q.uri==''&amp;&amp;q.local=='move';"/>
+           <fn name="empty">
+            <axis name="following-sibling" nodeTest="element(Q{}move)" jsTest="var q=SaxonJS.U.nameOfNode(item); return item.nodeType==1 &amp;&amp; q.uri==''&amp;&amp;q.local=='move';"/>
+           </fn>
+          </filter>
+         </check>
+         <axis line="50" name="attribute" nodeTest="attribute(Q{}id)" jsTest="return item.name=='id'"/>
+        </slash>
+       </data>
+       <str val="proposal"/>
+      </vc>
+      <elem line="51" name="p" namespaces="xs=http://www.w3.org/2001/XMLSchema svg=http://www.w3.org/2000/svg pcm=http://www.masereeuw.nl/xslt/2.0/functions">
+       <elem name="input">
+        <sequence>
+         <att name="type">
+          <str val="submit"/>
+         </att>
+         <att name="id">
+          <str val="next-move-button"/>
+         </att>
+         <att name="value">
+          <str val="Next move"/>
+         </att>
+         <att name="style">
+          <str val="height: 2em;"/>
+         </att>
+        </sequence>
+       </elem>
+      </elem>
+     </choose>
+    </sequence>
+   </templateRule>
+  </mode>
+ </co>
+ <co id="42" binds="12">
+  <template name="Q{}doNewMoves" flags="os" line="149" module="file:/home/pieter/saxonjs-experimenten/mastermind/mastermind-webinterface.xslt" slots="1">
+   <sequence role="body" vn="20" baseUri="file:/home/pieter/saxonjs-experimenten/mastermind/mastermind-webinterface.xslt" ns="xsl=http://www.w3.org/1999/XSL/Transform ixsl=http://saxonica.com/ns/interactiveXSLT xs=http://www.w3.org/2001/XMLSchema pcm=http://www.masereeuw.nl/xslt/2.0/functions svg=http://www.w3.org/2000/svg" line="150">
+    <param name="newColors" slot="0" flags="r" as="xs:integer*">
+     <treat role="conversion" as="xs:integer" jsTest="return SaxonJS.U.Atomic.integer.matches(item);" diag="8|0|XTTE0590|newColors">
+      <cvUntyped to="xs:integer">
+       <data>
+        <supplied slot="0"/>
+       </data>
+      </cvUntyped>
+     </treat>
+    </param>
+    <elem line="152" name="move" namespaces="xs=http://www.w3.org/2001/XMLSchema svg=http://www.w3.org/2000/svg pcm=http://www.masereeuw.nl/xslt/2.0/functions">
+     <sequence>
+      <att name="id">
+       <str val="proposal"/>
+      </att>
+      <choose line="154">
+       <vc op="ne" onEmpty="0" comp="CAVC">
+        <fn name="count">
+         <varRef name="newColors" slot="0"/>
+        </fn>
+        <gVarRef name="Q{}maxColumns" bSlot="0"/>
+       </vc>
+       <att line="155" name="class">
+        <str val="giving-up"/>
+       </att>
+       <true/>
+       <forEach line="158">
+        <varRef name="newColors" slot="0"/>
+        <elem line="159" name="color" namespaces="xs=http://www.w3.org/2001/XMLSchema svg=http://www.w3.org/2000/svg pcm=http://www.masereeuw.nl/xslt/2.0/functions">
+         <valueOf>
+          <convert from="xs:integer" to="xs:string">
+           <dot type="xs:integer"/>
+          </convert>
+         </valueOf>
+        </elem>
+       </forEach>
+      </choose>
+     </sequence>
+    </elem>
+   </sequence>
+  </template>
+ </co>
+ <overridden/>
+ <key name="Q{http://saxon.sf.net/}kk101" line="0" binds="">
+  <p.nodeSet>
+   <axis vn="20" baseUri="file:/home/pieter/saxonjs-experimenten/mastermind/mastermind-webinterface.xslt" ns="xsl=http://www.w3.org/1999/XSL/Transform ixsl=http://saxonica.com/ns/interactiveXSLT xs=http://www.w3.org/2001/XMLSchema pcm=http://www.masereeuw.nl/xslt/2.0/functions svg=http://www.w3.org/2000/svg" line="184" name="descendant" nodeTest="*:div" jsTest="var q=SaxonJS.U.nameOfNode(item); return SaxonJS.U.isNode(item) &amp;&amp; item.nodeType==1&amp;&amp;q.local == 'div'"/>
+  </p.nodeSet>
+  <data vn="20" baseUri="file:/home/pieter/saxonjs-experimenten/mastermind/mastermind-webinterface.xslt" ns="xsl=http://www.w3.org/1999/XSL/Transform ixsl=http://saxonica.com/ns/interactiveXSLT xs=http://www.w3.org/2001/XMLSchema pcm=http://www.masereeuw.nl/xslt/2.0/functions svg=http://www.w3.org/2000/svg" line="184">
+   <axis name="attribute" nodeTest="attribute(Q{}id)" jsTest="return item.name=='id'"/>
+  </data>
+ </key>
+ <key name="Q{http://saxon.sf.net/}kk102" line="0" binds="">
+  <p.nodeSet>
+   <axis vn="20" baseUri="file:/home/pieter/saxonjs-experimenten/mastermind/mastermind-webinterface.xslt" ns="xsl=http://www.w3.org/1999/XSL/Transform ixsl=http://saxonica.com/ns/interactiveXSLT xs=http://www.w3.org/2001/XMLSchema pcm=http://www.masereeuw.nl/xslt/2.0/functions svg=http://www.w3.org/2000/svg" line="244" name="descendant" nodeTest="element(Q{}div)" jsTest="var q=SaxonJS.U.nameOfNode(item); return item.nodeType==1 &amp;&amp; q.uri==''&amp;&amp;q.local=='div';"/>
+  </p.nodeSet>
+  <data vn="20" baseUri="file:/home/pieter/saxonjs-experimenten/mastermind/mastermind-webinterface.xslt" ns="xsl=http://www.w3.org/1999/XSL/Transform ixsl=http://saxonica.com/ns/interactiveXSLT xs=http://www.w3.org/2001/XMLSchema pcm=http://www.masereeuw.nl/xslt/2.0/functions svg=http://www.w3.org/2000/svg" line="244">
+   <axis name="attribute" nodeTest="attribute(Q{}id)" jsTest="return item.name=='id'"/>
+  </data>
+ </key>
+ <key name="Q{http://saxon.sf.net/}kk103" line="0" binds="">
+  <p.nodeSet>
+   <axis vn="20" baseUri="file:/home/pieter/saxonjs-experimenten/mastermind/mastermind-webinterface.xslt" ns="xsl=http://www.w3.org/1999/XSL/Transform ixsl=http://saxonica.com/ns/interactiveXSLT xs=http://www.w3.org/2001/XMLSchema pcm=http://www.masereeuw.nl/xslt/2.0/functions svg=http://www.w3.org/2000/svg" line="67" name="descendant" nodeTest="*:input" jsTest="var q=SaxonJS.U.nameOfNode(item); return SaxonJS.U.isNode(item) &amp;&amp; item.nodeType==1&amp;&amp;q.local == 'input'"/>
+  </p.nodeSet>
+  <data vn="20" baseUri="file:/home/pieter/saxonjs-experimenten/mastermind/mastermind-webinterface.xslt" ns="xsl=http://www.w3.org/1999/XSL/Transform ixsl=http://saxonica.com/ns/interactiveXSLT xs=http://www.w3.org/2001/XMLSchema pcm=http://www.masereeuw.nl/xslt/2.0/functions svg=http://www.w3.org/2000/svg" line="67">
+   <axis name="attribute" nodeTest="attribute(Q{}id)" jsTest="return item.name=='id'"/>
+  </data>
+ </key>
+ <output>
+  <property name="{http://saxon.sf.net/}stylesheet-version" value="20"/>
+  <property name="method" value="html"/>
+ </output>
+ <decimalFormat decimal-separator="46" grouping-separator="44" digit="35" minus-sign="45" percent="37" per-mille="8240" zero-digit="48" exponent-separator="101" pattern-separator="59" infinity="Infinity" NaN="NaN"/>
+</package>
+<?Σ 2512d8be?>
